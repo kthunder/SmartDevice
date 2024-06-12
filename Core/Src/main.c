@@ -111,20 +111,16 @@ int main(void)
 
   Oled_Init();
 
-  OLED_PrintString(0,0,"QQ Love LL !");
-OLED_PrintString(6,0," (*^-^*) ");
-
+  OLED_PrintString(4,0,"QQ Love LL!");
 
 
   while (1)
   {
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
-// SCROLL_DEACTIVE;
-// Oled_H_Scroll(H_LEFT, 0x00, 0x07, 0x07);
-// SCROLL_ACTIVE;
-
-// KAL_Delay(1500);
+SCROLL_DEACTIVE;
+Oled_H_Scroll(H_LEFT, 0x00, 0x07, 0x07);
+SCROLL_ACTIVE;
     // HAL_Delay(500);
   }
   /* USER CODE END 3 */

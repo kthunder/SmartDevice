@@ -19,20 +19,13 @@ void IIC_Init(void)
 {
     GPIO_InitTypeDef GPIO_InitStruct = {0};
 
-    __HAL_RCC_GPIOE_CLK_ENABLE();
-    __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOF_CLK_ENABLE();
-    __HAL_RCC_GPIOD_CLK_ENABLE();IIC_Delay();
-    __HAL_RCC_GPIOA_CLK_ENABLE();
 
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD; // 设置为开漏模式
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-
-    GPIO_InitStruct.Pin = SCL_Pin;         // 选择LED的引脚
-    HAL_GPIO_Init(SCL_GPIO_Port, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = SDA_Pin;         // 选择LED的引脚
-    HAL_GPIO_Init(SDA_GPIO_Port, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = SCL_Pin|SDA_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
 }
 

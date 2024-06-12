@@ -10,18 +10,6 @@ static int LedDeviceControl(LedDevice *pLedDevice, int iStatus)
     return KAL_LedDeviceControl(pLedDevice, iStatus);
 }
 
-
-/* 在内存中分配一块区域专门写数据，然后通过I2C将数据刷到LCD*/
-// static int DisplayDeviceInit(DisplayDevice *pDisplayDevice)
-// {
-//     return KAL_DisplayDeviceInit(pDisplayDevices);
-// }
-
-// static int DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
-// {
-//     return KAL_DisplayDeviceInit(pDisplayDevices);
-// }
-
 static LedDevice g_ledDevices[]={
     {
        LED_WHITE, LedDeviceInit,LedDeviceControl,NULL
@@ -42,7 +30,32 @@ LedDevice* GetLedDevice(int which)
     return &g_ledDevices[which];
 }
 
-// DisplayDevice* GetDisplayDevice(int which)
-// {
+/* 在内存中分配一块区域专门写数据，然后通过I2C将数据刷到LCD*/
+static int DisplayDeviceInit(DisplayDevice *pDisplayDevice)
+{
+    return KAL_DisplayDeviceInit(pDisplayDevice);
+}
 
-// }
+static int DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
+{
+    return KAL_DisplayDeviceFlash(pDisplayDevice);
+}
+
+/* 根据oled屏幕大小， 168*64/8 定义一个数组 */
+static unsigned char g_FrameBuffer[1024];
+
+static DisplayDevice g_OledDevice = 
+{
+    .name = "OLED",
+    .FrameBufferBase = &g_FrameBuffer,
+    .iXresolution = 128,
+    .iYresolution = 64,
+    .iBitPerPic = 1,
+    .Init = DisplayDeviceInit,
+    .Flash = DisplayDeviceFlash
+};
+
+DisplayDevice* GetDisplayDevice(int which)
+{
+
+}

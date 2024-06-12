@@ -6,4 +6,6 @@
 extern int KAL_LedDeviceInit(LedDevice *pLedDevice);
 extern int KAL_LedDeviceControl(LedDevice *pLedDevice, int iStatus);
 
+extern int KAL_DisplayDeviceInit(DisplayDevice *pDisplayDevice);
+extern int KAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice);
 #endif

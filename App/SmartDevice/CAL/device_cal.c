@@ -2,16 +2,32 @@
 
 int CAL_LedDeviceInit(LedDevice *pLedDevice)
 {
-    /* 针对裸机，注册中断*/
+#if defined(CONFIG_SUPPORT_HAL)
     return Led_Init(pLedDevice);
-
-    /* 针对RTOS，创建任务*/
+#endif
 }
 
 int CAL_LedDeviceControl(LedDevice *pLedDevice, int iStatus)
 {
-    /* 针对裸机，注册中断*/
+#if defined(CONFIG_SUPPORT_HAL)
     return LedControl(pLedDevice, iStatus);
 
-    /* 针对RTOS，创建任务*/
+#endif
+}
+
+int CAL_DisplayDeviceInit(DisplayDevice *pDisplayDevice)
+{
+#if defined(CONFIG_SUPPORT_HAL)
+    IIC_Init();
+    Oled_Init();
+
+    return 0;
+#endif
+}
+
+int CAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
+{
+#if defined(CONFIG_SUPPORT_HAL)
+
+#endif
 }

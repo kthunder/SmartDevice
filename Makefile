@@ -36,9 +36,9 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-App/UserDrivers/iic_driver.c \
-App/UserDrivers/oled_driver.c \
-App/UserDrivers/ascii_font.c \
+App/SmartDevice/ModuleDriver/iic_driver.c \
+App/SmartDevice/ModuleDriver/oled_driver.c \
+App/SmartDevice/ModuleDriver/ascii_font.c \
 App/SmartDevice/ModuleDriver/uart_driver.c \
 App/SmartDevice/ModuleDriver/ring_buffer.c \
 App/SmartDevice/ModuleDriver/key_driver.c \
@@ -129,7 +129,6 @@ AS_INCLUDES =
 
 # C includes
 C_INCLUDES =  \
--IApp/UserDrivers \
 -IApp/SmartDevice \
 -IApp/SmartDevice/ModuleDriver \
 -IApp/SmartDevice/SubSystems \

@@ -3,6 +3,12 @@
 
 #include "stddef.h"
 
+#define CONFIG_NO_OS
+// #define CONFIG_FREERTOS
+// #define CONFIG_RTTHREAD
+
+#define CONFIG_SUPPORT_HAL
+
 #define TIME_T                          int
 #define INPUT_BUF_LEN                   100
 #define BUFFER_SIZE                     10
