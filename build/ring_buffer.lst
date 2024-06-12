@@ -1,0 +1,277 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"ring_buffer.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.PutEventIntoBuffer,"ax",%progbits
+  18              		.align	1
+  19              		.global	PutEventIntoBuffer
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	PutEventIntoBuffer:
+  25              	.LFB0:
+  26              		.file 1 "App/SmartDevice/ModuleDriver/ring_buffer.c"
+   1:App/SmartDevice/ModuleDriver/ring_buffer.c **** #include "ring_Buffer.h"
+   2:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+   3:App/SmartDevice/ModuleDriver/ring_buffer.c **** InputEventBuffer g_inputEventBuffer;
+   4:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+   5:App/SmartDevice/ModuleDriver/ring_buffer.c **** int PutEventIntoBuffer(InputEvent inputEvent)
+   6:App/SmartDevice/ModuleDriver/ring_buffer.c **** {
+  27              		.loc 1 6 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 124, pretend = 16, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 84B0     		sub	sp, sp, #16
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 16
+  34 0002 38B5     		push	{r3, r4, r5, lr}
+  35              	.LCFI1:
+  36              		.cfi_def_cfa_offset 32
+  37              		.cfi_offset 3, -32
+  38              		.cfi_offset 4, -28
+  39              		.cfi_offset 5, -24
+  40              		.cfi_offset 14, -20
+  41 0004 04AC     		add	r4, sp, #16
+  42 0006 84E80F00 		stm	r4, {r0, r1, r2, r3}
+   7:App/SmartDevice/ModuleDriver/ring_buffer.c ****     int index = (g_inputEventBuffer.pWrite + 1)%BUFFER_SIZE;
+  43              		.loc 1 7 5 view .LVU1
+  44              		.loc 1 7 36 is_stmt 0 view .LVU2
+  45 000a 104A     		ldr	r2, .L5
+  46 000c 1368     		ldr	r3, [r2]
+  47              		.loc 1 7 44 view .LVU3
+  48 000e 581C     		adds	r0, r3, #1
+  49              		.loc 1 7 48 view .LVU4
+  50 0010 0F4C     		ldr	r4, .L5+4
+  51 0012 A4FB0014 		umull	r1, r4, r4, r0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s 			page 2
+
+
+  52 0016 E408     		lsrs	r4, r4, #3
+  53 0018 04EB8404 		add	r4, r4, r4, lsl #2
+  54 001c 6100     		lsls	r1, r4, #1
+  55 001e 441A     		subs	r4, r0, r1
+  56              	.LVL0:
+   8:App/SmartDevice/ModuleDriver/ring_buffer.c ****     if( index == g_inputEventBuffer.pRead)
+  57              		.loc 1 8 5 is_stmt 1 view .LVU5
+  58              		.loc 1 8 36 is_stmt 0 view .LVU6
+  59 0020 5268     		ldr	r2, [r2, #4]
+  60              		.loc 1 8 7 view .LVU7
+  61 0022 9442     		cmp	r4, r2
+  62 0024 0FD0     		beq	.L3
+   9:App/SmartDevice/ModuleDriver/ring_buffer.c ****     {
+  10:App/SmartDevice/ModuleDriver/ring_buffer.c ****         return BUFFER_FULL;
+  11:App/SmartDevice/ModuleDriver/ring_buffer.c ****     }
+  12:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+  13:App/SmartDevice/ModuleDriver/ring_buffer.c ****     g_inputEventBuffer.buffer[g_inputEventBuffer.pWrite] = inputEvent;
+  63              		.loc 1 13 5 is_stmt 1 view .LVU8
+  64              		.loc 1 13 58 is_stmt 0 view .LVU9
+  65 0026 094D     		ldr	r5, .L5
+  66 0028 C3EB4313 		rsb	r3, r3, r3, lsl #5
+  67 002c 9800     		lsls	r0, r3, #2
+  68 002e 2844     		add	r0, r0, r5
+  69 0030 7C22     		movs	r2, #124
+  70 0032 04A9     		add	r1, sp, #16
+  71 0034 0830     		adds	r0, r0, #8
+  72 0036 FFF7FEFF 		bl	memcpy
+  73              	.LVL1:
+  14:App/SmartDevice/ModuleDriver/ring_buffer.c ****     g_inputEventBuffer.pWrite = index;
+  74              		.loc 1 14 5 is_stmt 1 view .LVU10
+  75              		.loc 1 14 31 is_stmt 0 view .LVU11
+  76 003a 2C60     		str	r4, [r5]
+  15:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+  16:App/SmartDevice/ModuleDriver/ring_buffer.c ****     return 0;
+  77              		.loc 1 16 5 is_stmt 1 view .LVU12
+  78              		.loc 1 16 12 is_stmt 0 view .LVU13
+  79 003c 0020     		movs	r0, #0
+  80              	.L1:
+  17:App/SmartDevice/ModuleDriver/ring_buffer.c **** }
+  81              		.loc 1 17 1 view .LVU14
+  82 003e BDE83840 		pop	{r3, r4, r5, lr}
+  83              	.LCFI2:
+  84              		.cfi_remember_state
+  85              		.cfi_restore 14
+  86              		.cfi_restore 5
+  87              		.cfi_restore 4
+  88              		.cfi_restore 3
+  89              		.cfi_def_cfa_offset 16
+  90              	.LVL2:
+  91              		.loc 1 17 1 view .LVU15
+  92 0042 04B0     		add	sp, sp, #16
+  93              	.LCFI3:
+  94              		.cfi_def_cfa_offset 0
+  95 0044 7047     		bx	lr
+  96              	.LVL3:
+  97              	.L3:
+  98              	.LCFI4:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s 			page 3
+
+
+  99              		.cfi_restore_state
+  10:App/SmartDevice/ModuleDriver/ring_buffer.c ****     }
+ 100              		.loc 1 10 16 view .LVU16
+ 101 0046 0220     		movs	r0, #2
+ 102 0048 F9E7     		b	.L1
+ 103              	.L6:
+ 104 004a 00BF     		.align	2
+ 105              	.L5:
+ 106 004c 00000000 		.word	.LANCHOR0
+ 107 0050 CDCCCCCC 		.word	-858993459
+ 108              		.cfi_endproc
+ 109              	.LFE0:
+ 111              		.section	.text.GetEventFromBuffer,"ax",%progbits
+ 112              		.align	1
+ 113              		.global	GetEventFromBuffer
+ 114              		.syntax unified
+ 115              		.thumb
+ 116              		.thumb_func
+ 118              	GetEventFromBuffer:
+ 119              	.LVL4:
+ 120              	.LFB1:
+  18:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+  19:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+  20:App/SmartDevice/ModuleDriver/ring_buffer.c **** int GetEventFromBuffer(InputEvent *pInputEvent)
+  21:App/SmartDevice/ModuleDriver/ring_buffer.c **** {
+ 121              		.loc 1 21 1 is_stmt 1 view -0
+ 122              		.cfi_startproc
+ 123              		@ args = 0, pretend = 0, frame = 0
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+  22:App/SmartDevice/ModuleDriver/ring_buffer.c ****     if(pInputEvent == NULL)
+ 125              		.loc 1 22 5 view .LVU18
+ 126              		.loc 1 22 7 is_stmt 0 view .LVU19
+ 127 0000 D8B1     		cbz	r0, .L9
+  23:App/SmartDevice/ModuleDriver/ring_buffer.c ****     {
+  24:App/SmartDevice/ModuleDriver/ring_buffer.c ****         return NULL_POINT;
+  25:App/SmartDevice/ModuleDriver/ring_buffer.c ****     }
+  26:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+  27:App/SmartDevice/ModuleDriver/ring_buffer.c ****     if(g_inputEventBuffer.pRead == g_inputEventBuffer.pWrite)
+ 128              		.loc 1 27 5 is_stmt 1 view .LVU20
+ 129              		.loc 1 27 26 is_stmt 0 view .LVU21
+ 130 0002 104B     		ldr	r3, .L15
+ 131 0004 5968     		ldr	r1, [r3, #4]
+ 132              		.loc 1 27 54 view .LVU22
+ 133 0006 1B68     		ldr	r3, [r3]
+ 134              		.loc 1 27 7 view .LVU23
+ 135 0008 9942     		cmp	r1, r3
+ 136 000a 18D0     		beq	.L10
+  21:App/SmartDevice/ModuleDriver/ring_buffer.c ****     if(pInputEvent == NULL)
+ 137              		.loc 1 21 1 view .LVU24
+ 138 000c 10B5     		push	{r4, lr}
+ 139              	.LCFI5:
+ 140              		.cfi_def_cfa_offset 8
+ 141              		.cfi_offset 4, -8
+ 142              		.cfi_offset 14, -4
+  28:App/SmartDevice/ModuleDriver/ring_buffer.c ****     {
+  29:App/SmartDevice/ModuleDriver/ring_buffer.c ****         return BUFFER_EMPTY;
+  30:App/SmartDevice/ModuleDriver/ring_buffer.c ****     }
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s 			page 4
+
+
+  31:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+  32:App/SmartDevice/ModuleDriver/ring_buffer.c ****     *pInputEvent = g_inputEventBuffer.buffer[g_inputEventBuffer.pRead];
+ 143              		.loc 1 32 5 is_stmt 1 view .LVU25
+ 144              		.loc 1 32 18 is_stmt 0 view .LVU26
+ 145 000e 0D4C     		ldr	r4, .L15
+ 146 0010 C1EB4111 		rsb	r1, r1, r1, lsl #5
+ 147 0014 04EB8101 		add	r1, r4, r1, lsl #2
+ 148 0018 7C22     		movs	r2, #124
+ 149 001a 0831     		adds	r1, r1, #8
+ 150 001c FFF7FEFF 		bl	memcpy
+ 151              	.LVL5:
+  33:App/SmartDevice/ModuleDriver/ring_buffer.c ****     g_inputEventBuffer.pRead = (g_inputEventBuffer.pRead + 1)%BUFFER_SIZE;
+ 152              		.loc 1 33 5 is_stmt 1 view .LVU27
+ 153              		.loc 1 33 51 is_stmt 0 view .LVU28
+ 154 0020 6268     		ldr	r2, [r4, #4]
+ 155              		.loc 1 33 58 view .LVU29
+ 156 0022 0132     		adds	r2, r2, #1
+ 157              		.loc 1 33 62 view .LVU30
+ 158 0024 084B     		ldr	r3, .L15+4
+ 159 0026 A3FB0213 		umull	r1, r3, r3, r2
+ 160 002a DB08     		lsrs	r3, r3, #3
+ 161 002c 03EB8303 		add	r3, r3, r3, lsl #2
+ 162 0030 A2EB4303 		sub	r3, r2, r3, lsl #1
+ 163              		.loc 1 33 30 view .LVU31
+ 164 0034 6360     		str	r3, [r4, #4]
+  34:App/SmartDevice/ModuleDriver/ring_buffer.c **** 
+  35:App/SmartDevice/ModuleDriver/ring_buffer.c ****     return 0;
+ 165              		.loc 1 35 5 is_stmt 1 view .LVU32
+ 166              		.loc 1 35 12 is_stmt 0 view .LVU33
+ 167 0036 0020     		movs	r0, #0
+  36:App/SmartDevice/ModuleDriver/ring_buffer.c **** }...
+ 168              		.loc 1 36 1 view .LVU34
+ 169 0038 10BD     		pop	{r4, pc}
+ 170              	.LVL6:
+ 171              	.L9:
+ 172              	.LCFI6:
+ 173              		.cfi_def_cfa_offset 0
+ 174              		.cfi_restore 4
+ 175              		.cfi_restore 14
+  24:App/SmartDevice/ModuleDriver/ring_buffer.c ****         return NULL_POINT;
+ 176              		.loc 1 24 16 view .LVU35
+ 177 003a 0120     		movs	r0, #1
+ 178              	.LVL7:
+  24:App/SmartDevice/ModuleDriver/ring_buffer.c ****         return NULL_POINT;
+ 179              		.loc 1 24 16 view .LVU36
+ 180 003c 7047     		bx	lr
+ 181              	.LVL8:
+ 182              	.L10:
+  29:App/SmartDevice/ModuleDriver/ring_buffer.c ****         return BUFFER_EMPTY;
+ 183              		.loc 1 29 16 view .LVU37
+ 184 003e 0320     		movs	r0, #3
+ 185              	.LVL9:
+ 186              		.loc 1 36 1 view .LVU38
+ 187 0040 7047     		bx	lr
+ 188              	.L16:
+ 189 0042 00BF     		.align	2
+ 190              	.L15:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s 			page 5
+
+
+ 191 0044 00000000 		.word	.LANCHOR0
+ 192 0048 CDCCCCCC 		.word	-858993459
+ 193              		.cfi_endproc
+ 194              	.LFE1:
+ 196              		.global	g_inputEventBuffer
+ 197              		.section	.bss.g_inputEventBuffer,"aw",%nobits
+ 198              		.align	2
+ 199              		.set	.LANCHOR0,. + 0
+ 202              	g_inputEventBuffer:
+ 203 0000 00000000 		.space	1248
+ 203      00000000 
+ 203      00000000 
+ 203      00000000 
+ 203      00000000 
+ 204              		.text
+ 205              	.Letext0:
+ 206              		.file 2 "App/SmartDevice/SubSystems/system_type.h"
+ 207              		.file 3 "<built-in>"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 ring_buffer.c
+C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s:18     .text.PutEventIntoBuffer:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s:24     .text.PutEventIntoBuffer:0000000000000000 PutEventIntoBuffer
+C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s:106    .text.PutEventIntoBuffer:000000000000004c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s:112    .text.GetEventFromBuffer:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s:118    .text.GetEventFromBuffer:0000000000000000 GetEventFromBuffer
+C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s:191    .text.GetEventFromBuffer:0000000000000044 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s:202    .bss.g_inputEventBuffer:0000000000000000 g_inputEventBuffer
+C:\Users\ADMINI~1\AppData\Local\Temp\cce8o2RA.s:198    .bss.g_inputEventBuffer:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+memcpy

@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // TODO: Support debug. Unsupport now.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "preLaunchTask": "Build Project",
+            // "debugServer": 4711,
+            "cwd": "${workspaceRoot}",
+            "executable": "./build/${workspaceFolderBasename}.elf",
+            "name": "Debug with OpenOCD",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "openOCDLaunchCommands": [
+                "init",
+                "halt",
+            ],
+            "configFiles": [
+                "./env/stm32f103.cfg"
+            ],
+            "searchDir": [
+                "${env:BSP_PATH}//openocd//scripts"
+            ],
+            "gdbPath": "arm-none-eabi-gdb",
+            "svdFile": "env/STM32F103.svd",
+            "runToEntryPoint": "main",
+            "rttConfig": {
+                "enabled": true,
+                "address": "0x20100000",
+                "searchId": "SEGGER RTT",
+                "searchSize": 1024,
+                "polling_interval": 10,
+                "rtt_start_retry": 100,
+                "clearSearch": false,
+                "decoders": [
+                    {
+                        "label": "RTT output",
+                        "port": 0,
+                        "type": "console"
+                    },
+                ]
+            }
+        }
+    ]
+}

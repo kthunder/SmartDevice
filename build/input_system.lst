@@ -1,0 +1,436 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"input_system.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.InputDeviceRegister,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	InputDeviceRegister:
+  24              	.LVL0:
+  25              	.LFB70:
+  26              		.file 1 "App/SmartDevice/SubSystems/Input/input_system.c"
+   1:App/SmartDevice/SubSystems/Input/input_system.c **** #include "input_system.h"
+   2:App/SmartDevice/SubSystems/Input/input_system.c **** 
+   3:App/SmartDevice/SubSystems/Input/input_system.c **** InputDevice* g_InputDeviceList = NULL;
+   4:App/SmartDevice/SubSystems/Input/input_system.c **** 
+   5:App/SmartDevice/SubSystems/Input/input_system.c **** static void GpioKeyInit(void)
+   6:App/SmartDevice/SubSystems/Input/input_system.c **** {
+   7:App/SmartDevice/SubSystems/Input/input_system.c ****     KAL_GpioKeyInit();
+   8:App/SmartDevice/SubSystems/Input/input_system.c **** }
+   9:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  10:App/SmartDevice/SubSystems/Input/input_system.c **** static void StdIoInit(void)
+  11:App/SmartDevice/SubSystems/Input/input_system.c **** {
+  12:App/SmartDevice/SubSystems/Input/input_system.c ****     KAL_StdIoInit();
+  13:App/SmartDevice/SubSystems/Input/input_system.c **** }
+  14:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  15:App/SmartDevice/SubSystems/Input/input_system.c **** static InputDevice g_KeyDevice=
+  16:App/SmartDevice/SubSystems/Input/input_system.c **** {
+  17:App/SmartDevice/SubSystems/Input/input_system.c ****     .name = "key",
+  18:App/SmartDevice/SubSystems/Input/input_system.c ****     .GetInputEvent = NULL,
+  19:App/SmartDevice/SubSystems/Input/input_system.c ****     .DeviceInit = GpioKeyInit,
+  20:App/SmartDevice/SubSystems/Input/input_system.c ****     .DeviceDeInit = NULL
+  21:App/SmartDevice/SubSystems/Input/input_system.c **** };
+  22:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  23:App/SmartDevice/SubSystems/Input/input_system.c **** static InputDevice g_StdDevice=
+  24:App/SmartDevice/SubSystems/Input/input_system.c **** {
+  25:App/SmartDevice/SubSystems/Input/input_system.c ****     .name = "stdio",
+  26:App/SmartDevice/SubSystems/Input/input_system.c ****     .GetInputEvent = NULL,
+  27:App/SmartDevice/SubSystems/Input/input_system.c ****     .DeviceInit = StdIoInit,
+  28:App/SmartDevice/SubSystems/Input/input_system.c ****     .DeviceDeInit = NULL
+  29:App/SmartDevice/SubSystems/Input/input_system.c **** };
+  30:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  31:App/SmartDevice/SubSystems/Input/input_system.c **** static void InputDeviceRegister(InputDevice* inputDevice)
+  32:App/SmartDevice/SubSystems/Input/input_system.c **** {
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s 			page 2
+
+
+  27              		.loc 1 32 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  33:App/SmartDevice/SubSystems/Input/input_system.c ****     if (g_InputDeviceList == NULL)
+  32              		.loc 1 33 5 view .LVU1
+  33              		.loc 1 33 27 is_stmt 0 view .LVU2
+  34 0000 054B     		ldr	r3, .L5
+  35 0002 1B68     		ldr	r3, [r3]
+  36              		.loc 1 33 8 view .LVU3
+  37 0004 2BB1     		cbz	r3, .L4
+  38              	.L2:
+  39              	.LVL1:
+  40              	.LBB2:
+  34:App/SmartDevice/SubSystems/Input/input_system.c ****     {
+  35:App/SmartDevice/SubSystems/Input/input_system.c ****         g_InputDeviceList = inputDevice;
+  36:App/SmartDevice/SubSystems/Input/input_system.c ****     }else
+  37:App/SmartDevice/SubSystems/Input/input_system.c ****     {
+  38:App/SmartDevice/SubSystems/Input/input_system.c ****         InputDevice* tmp = g_InputDeviceList;
+  39:App/SmartDevice/SubSystems/Input/input_system.c ****         while (tmp->next!=NULL)
+  41              		.loc 1 39 15 is_stmt 1 view .LVU4
+  42 0006 1A46     		mov	r2, r3
+  43              		.loc 1 39 19 is_stmt 0 view .LVU5
+  44 0008 1B69     		ldr	r3, [r3, #16]
+  45              	.LVL2:
+  46              		.loc 1 39 15 view .LVU6
+  47 000a 002B     		cmp	r3, #0
+  48 000c FBD1     		bne	.L2
+  40:App/SmartDevice/SubSystems/Input/input_system.c ****         {
+  41:App/SmartDevice/SubSystems/Input/input_system.c ****             tmp = tmp->next;
+  42:App/SmartDevice/SubSystems/Input/input_system.c ****         }
+  43:App/SmartDevice/SubSystems/Input/input_system.c ****         tmp->next = inputDevice;
+  49              		.loc 1 43 9 is_stmt 1 view .LVU7
+  50              		.loc 1 43 19 is_stmt 0 view .LVU8
+  51 000e 1061     		str	r0, [r2, #16]
+  52              	.LBE2:
+  44:App/SmartDevice/SubSystems/Input/input_system.c ****     }
+  45:App/SmartDevice/SubSystems/Input/input_system.c **** }
+  53              		.loc 1 45 1 view .LVU9
+  54 0010 7047     		bx	lr
+  55              	.LVL3:
+  56              	.L4:
+  35:App/SmartDevice/SubSystems/Input/input_system.c ****     }else
+  57              		.loc 1 35 9 is_stmt 1 view .LVU10
+  35:App/SmartDevice/SubSystems/Input/input_system.c ****     }else
+  58              		.loc 1 35 27 is_stmt 0 view .LVU11
+  59 0012 014B     		ldr	r3, .L5
+  60 0014 1860     		str	r0, [r3]
+  61 0016 7047     		bx	lr
+  62              	.L6:
+  63              		.align	2
+  64              	.L5:
+  65 0018 00000000 		.word	.LANCHOR0
+  66              		.cfi_endproc
+  67              	.LFE70:
+  69              		.section	.text.GpioKeyInit,"ax",%progbits
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s 			page 3
+
+
+  70              		.align	1
+  71              		.syntax unified
+  72              		.thumb
+  73              		.thumb_func
+  75              	GpioKeyInit:
+  76              	.LFB68:
+   6:App/SmartDevice/SubSystems/Input/input_system.c ****     KAL_GpioKeyInit();
+  77              		.loc 1 6 1 is_stmt 1 view -0
+  78              		.cfi_startproc
+  79              		@ args = 0, pretend = 0, frame = 0
+  80              		@ frame_needed = 0, uses_anonymous_args = 0
+  81 0000 08B5     		push	{r3, lr}
+  82              	.LCFI0:
+  83              		.cfi_def_cfa_offset 8
+  84              		.cfi_offset 3, -8
+  85              		.cfi_offset 14, -4
+   7:App/SmartDevice/SubSystems/Input/input_system.c **** }
+  86              		.loc 1 7 5 view .LVU13
+  87 0002 FFF7FEFF 		bl	KAL_GpioKeyInit
+  88              	.LVL4:
+   8:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  89              		.loc 1 8 1 is_stmt 0 view .LVU14
+  90 0006 08BD     		pop	{r3, pc}
+  91              		.cfi_endproc
+  92              	.LFE68:
+  94              		.section	.text.StdIoInit,"ax",%progbits
+  95              		.align	1
+  96              		.syntax unified
+  97              		.thumb
+  98              		.thumb_func
+ 100              	StdIoInit:
+ 101              	.LFB69:
+  11:App/SmartDevice/SubSystems/Input/input_system.c ****     KAL_StdIoInit();
+ 102              		.loc 1 11 1 is_stmt 1 view -0
+ 103              		.cfi_startproc
+ 104              		@ args = 0, pretend = 0, frame = 0
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106 0000 08B5     		push	{r3, lr}
+ 107              	.LCFI1:
+ 108              		.cfi_def_cfa_offset 8
+ 109              		.cfi_offset 3, -8
+ 110              		.cfi_offset 14, -4
+  12:App/SmartDevice/SubSystems/Input/input_system.c **** }
+ 111              		.loc 1 12 5 view .LVU16
+ 112 0002 FFF7FEFF 		bl	KAL_StdIoInit
+ 113              	.LVL5:
+  13:App/SmartDevice/SubSystems/Input/input_system.c **** 
+ 114              		.loc 1 13 1 is_stmt 0 view .LVU17
+ 115 0006 08BD     		pop	{r3, pc}
+ 116              		.cfi_endproc
+ 117              	.LFE69:
+ 119              		.section	.text.AddKeyToInputDevice,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	AddKeyToInputDevice
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s 			page 4
+
+
+ 126              	AddKeyToInputDevice:
+ 127              	.LFB71:
+  46:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  47:App/SmartDevice/SubSystems/Input/input_system.c **** void AddKeyToInputDevice()
+  48:App/SmartDevice/SubSystems/Input/input_system.c **** {
+ 128              		.loc 1 48 1 is_stmt 1 view -0
+ 129              		.cfi_startproc
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132 0000 08B5     		push	{r3, lr}
+ 133              	.LCFI2:
+ 134              		.cfi_def_cfa_offset 8
+ 135              		.cfi_offset 3, -8
+ 136              		.cfi_offset 14, -4
+  49:App/SmartDevice/SubSystems/Input/input_system.c ****     InputDeviceRegister(&g_KeyDevice);
+ 137              		.loc 1 49 5 view .LVU19
+ 138 0002 0248     		ldr	r0, .L13
+ 139 0004 FFF7FEFF 		bl	InputDeviceRegister
+ 140              	.LVL6:
+  50:App/SmartDevice/SubSystems/Input/input_system.c **** }
+ 141              		.loc 1 50 1 is_stmt 0 view .LVU20
+ 142 0008 08BD     		pop	{r3, pc}
+ 143              	.L14:
+ 144 000a 00BF     		.align	2
+ 145              	.L13:
+ 146 000c 00000000 		.word	.LANCHOR1
+ 147              		.cfi_endproc
+ 148              	.LFE71:
+ 150              		.section	.text.AddStdIoToInputDevice,"ax",%progbits
+ 151              		.align	1
+ 152              		.global	AddStdIoToInputDevice
+ 153              		.syntax unified
+ 154              		.thumb
+ 155              		.thumb_func
+ 157              	AddStdIoToInputDevice:
+ 158              	.LFB72:
+  51:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  52:App/SmartDevice/SubSystems/Input/input_system.c **** void AddStdIoToInputDevice()
+  53:App/SmartDevice/SubSystems/Input/input_system.c **** {
+ 159              		.loc 1 53 1 is_stmt 1 view -0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163 0000 08B5     		push	{r3, lr}
+ 164              	.LCFI3:
+ 165              		.cfi_def_cfa_offset 8
+ 166              		.cfi_offset 3, -8
+ 167              		.cfi_offset 14, -4
+  54:App/SmartDevice/SubSystems/Input/input_system.c ****     InputDeviceRegister(&g_StdDevice);
+ 168              		.loc 1 54 5 view .LVU22
+ 169 0002 0248     		ldr	r0, .L17
+ 170 0004 FFF7FEFF 		bl	InputDeviceRegister
+ 171              	.LVL7:
+  55:App/SmartDevice/SubSystems/Input/input_system.c **** }
+ 172              		.loc 1 55 1 is_stmt 0 view .LVU23
+ 173 0008 08BD     		pop	{r3, pc}
+ 174              	.L18:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s 			page 5
+
+
+ 175 000a 00BF     		.align	2
+ 176              	.L17:
+ 177 000c 00000000 		.word	.LANCHOR2
+ 178              		.cfi_endproc
+ 179              	.LFE72:
+ 181              		.section	.text.AddInputDevices,"ax",%progbits
+ 182              		.align	1
+ 183              		.global	AddInputDevices
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ 188              	AddInputDevices:
+ 189              	.LFB73:
+  56:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  57:App/SmartDevice/SubSystems/Input/input_system.c **** void AddInputDevices()
+  58:App/SmartDevice/SubSystems/Input/input_system.c **** {
+ 190              		.loc 1 58 1 is_stmt 1 view -0
+ 191              		.cfi_startproc
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 194 0000 08B5     		push	{r3, lr}
+ 195              	.LCFI4:
+ 196              		.cfi_def_cfa_offset 8
+ 197              		.cfi_offset 3, -8
+ 198              		.cfi_offset 14, -4
+  59:App/SmartDevice/SubSystems/Input/input_system.c ****     AddKeyToInputDevice();
+ 199              		.loc 1 59 5 view .LVU25
+ 200 0002 FFF7FEFF 		bl	AddKeyToInputDevice
+ 201              	.LVL8:
+  60:App/SmartDevice/SubSystems/Input/input_system.c ****     AddStdIoToInputDevice();
+ 202              		.loc 1 60 5 view .LVU26
+ 203 0006 FFF7FEFF 		bl	AddStdIoToInputDevice
+ 204              	.LVL9:
+  61:App/SmartDevice/SubSystems/Input/input_system.c **** }
+ 205              		.loc 1 61 1 is_stmt 0 view .LVU27
+ 206 000a 08BD     		pop	{r3, pc}
+ 207              		.cfi_endproc
+ 208              	.LFE73:
+ 210              		.section	.rodata.InitInputDevices.str1.4,"aMS",%progbits,1
+ 211              		.align	2
+ 212              	.LC0:
+ 213 0000 696E6974 		.ascii	"init devices.\015\000"
+ 213      20646576 
+ 213      69636573 
+ 213      2E0D00
+ 214              		.section	.text.InitInputDevices,"ax",%progbits
+ 215              		.align	1
+ 216              		.global	InitInputDevices
+ 217              		.syntax unified
+ 218              		.thumb
+ 219              		.thumb_func
+ 221              	InitInputDevices:
+ 222              	.LFB74:
+  62:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  63:App/SmartDevice/SubSystems/Input/input_system.c **** void InitInputDevices()
+  64:App/SmartDevice/SubSystems/Input/input_system.c **** {
+ 223              		.loc 1 64 1 is_stmt 1 view -0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s 			page 6
+
+
+ 224              		.cfi_startproc
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 227 0000 10B5     		push	{r4, lr}
+ 228              	.LCFI5:
+ 229              		.cfi_def_cfa_offset 8
+ 230              		.cfi_offset 4, -8
+ 231              		.cfi_offset 14, -4
+  65:App/SmartDevice/SubSystems/Input/input_system.c ****     InputDevice* tmp = g_InputDeviceList;
+ 232              		.loc 1 65 5 view .LVU29
+ 233              		.loc 1 65 18 is_stmt 0 view .LVU30
+ 234 0002 064B     		ldr	r3, .L25
+ 235 0004 1C68     		ldr	r4, [r3]
+ 236              	.LVL10:
+  66:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  67:App/SmartDevice/SubSystems/Input/input_system.c ****     while (tmp !=NULL)
+ 237              		.loc 1 67 5 is_stmt 1 view .LVU31
+ 238              		.loc 1 67 11 is_stmt 0 view .LVU32
+ 239 0006 02E0     		b	.L22
+ 240              	.L23:
+  68:App/SmartDevice/SubSystems/Input/input_system.c ****     {
+  69:App/SmartDevice/SubSystems/Input/input_system.c ****         tmp->DeviceInit();
+ 241              		.loc 1 69 9 is_stmt 1 view .LVU33
+ 242              		.loc 1 69 12 is_stmt 0 view .LVU34
+ 243 0008 A368     		ldr	r3, [r4, #8]
+ 244              		.loc 1 69 9 view .LVU35
+ 245 000a 9847     		blx	r3
+ 246              	.LVL11:
+  70:App/SmartDevice/SubSystems/Input/input_system.c ****         tmp = tmp ->next;
+ 247              		.loc 1 70 9 is_stmt 1 view .LVU36
+ 248              		.loc 1 70 13 is_stmt 0 view .LVU37
+ 249 000c 2469     		ldr	r4, [r4, #16]
+ 250              	.LVL12:
+ 251              	.L22:
+  67:App/SmartDevice/SubSystems/Input/input_system.c ****     {
+ 252              		.loc 1 67 11 is_stmt 1 view .LVU38
+ 253 000e 002C     		cmp	r4, #0
+ 254 0010 FAD1     		bne	.L23
+  71:App/SmartDevice/SubSystems/Input/input_system.c ****     }
+  72:App/SmartDevice/SubSystems/Input/input_system.c **** 
+  73:App/SmartDevice/SubSystems/Input/input_system.c ****     printf("init devices.\r\n");
+ 255              		.loc 1 73 5 view .LVU39
+ 256 0012 0348     		ldr	r0, .L25+4
+ 257 0014 FFF7FEFF 		bl	puts
+ 258              	.LVL13:
+  74:App/SmartDevice/SubSystems/Input/input_system.c **** }
+ 259              		.loc 1 74 1 is_stmt 0 view .LVU40
+ 260 0018 10BD     		pop	{r4, pc}
+ 261              	.LVL14:
+ 262              	.L26:
+ 263              		.loc 1 74 1 view .LVU41
+ 264 001a 00BF     		.align	2
+ 265              	.L25:
+ 266 001c 00000000 		.word	.LANCHOR0
+ 267 0020 00000000 		.word	.LC0
+ 268              		.cfi_endproc
+ 269              	.LFE74:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s 			page 7
+
+
+ 271              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 272              		.align	2
+ 273              	.LC1:
+ 274 0000 73746469 		.ascii	"stdio\000"
+ 274      6F00
+ 275 0006 0000     		.align	2
+ 276              	.LC2:
+ 277 0008 6B657900 		.ascii	"key\000"
+ 278              		.global	g_InputDeviceList
+ 279              		.section	.bss.g_InputDeviceList,"aw",%nobits
+ 280              		.align	2
+ 281              		.set	.LANCHOR0,. + 0
+ 284              	g_InputDeviceList:
+ 285 0000 00000000 		.space	4
+ 286              		.section	.data.g_KeyDevice,"aw"
+ 287              		.align	2
+ 288              		.set	.LANCHOR1,. + 0
+ 291              	g_KeyDevice:
+ 292 0000 08000000 		.word	.LC2
+ 293 0004 00000000 		.word	0
+ 294 0008 00000000 		.word	GpioKeyInit
+ 295 000c 00000000 		.word	0
+ 296 0010 00000000 		.space	4
+ 297              		.section	.data.g_StdDevice,"aw"
+ 298              		.align	2
+ 299              		.set	.LANCHOR2,. + 0
+ 302              	g_StdDevice:
+ 303 0000 00000000 		.word	.LC1
+ 304 0004 00000000 		.word	0
+ 305 0008 00000000 		.word	StdIoInit
+ 306 000c 00000000 		.word	0
+ 307 0010 00000000 		.space	4
+ 308              		.text
+ 309              	.Letext0:
+ 310              		.file 2 "App/SmartDevice/SubSystems/system_type.h"
+ 311              		.file 3 "App/SmartDevice/KAL/input_kal.h"
+ 312              		.file 4 "<built-in>"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 input_system.c
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:18     .text.InputDeviceRegister:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:23     .text.InputDeviceRegister:0000000000000000 InputDeviceRegister
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:65     .text.InputDeviceRegister:0000000000000018 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:70     .text.GpioKeyInit:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:75     .text.GpioKeyInit:0000000000000000 GpioKeyInit
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:95     .text.StdIoInit:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:100    .text.StdIoInit:0000000000000000 StdIoInit
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:120    .text.AddKeyToInputDevice:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:126    .text.AddKeyToInputDevice:0000000000000000 AddKeyToInputDevice
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:146    .text.AddKeyToInputDevice:000000000000000c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:151    .text.AddStdIoToInputDevice:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:157    .text.AddStdIoToInputDevice:0000000000000000 AddStdIoToInputDevice
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:177    .text.AddStdIoToInputDevice:000000000000000c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:182    .text.AddInputDevices:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:188    .text.AddInputDevices:0000000000000000 AddInputDevices
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:211    .rodata.InitInputDevices.str1.4:0000000000000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:215    .text.InitInputDevices:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:221    .text.InitInputDevices:0000000000000000 InitInputDevices
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:266    .text.InitInputDevices:000000000000001c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:272    .rodata.str1.4:0000000000000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:284    .bss.g_InputDeviceList:0000000000000000 g_InputDeviceList
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:280    .bss.g_InputDeviceList:0000000000000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:287    .data.g_KeyDevice:0000000000000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:291    .data.g_KeyDevice:0000000000000000 g_KeyDevice
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:298    .data.g_StdDevice:0000000000000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccDQKmCU.s:302    .data.g_StdDevice:0000000000000000 g_StdDevice
+
+UNDEFINED SYMBOLS
+KAL_GpioKeyInit
+KAL_StdIoInit
+puts

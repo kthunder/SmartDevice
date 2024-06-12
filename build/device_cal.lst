@@ -1,0 +1,111 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc1Gq5e3.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"device_cal.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.CAL_LedDeviceInit,"ax",%progbits
+  18              		.align	1
+  19              		.global	CAL_LedDeviceInit
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	CAL_LedDeviceInit:
+  25              	.LVL0:
+  26              	.LFB68:
+  27              		.file 1 "App/SmartDevice/CAL/device_cal.c"
+   1:App/SmartDevice/CAL/device_cal.c **** #include "device_cal.h"
+   2:App/SmartDevice/CAL/device_cal.c **** 
+   3:App/SmartDevice/CAL/device_cal.c **** int CAL_LedDeviceInit(LedDevice *pLedDevice)
+   4:App/SmartDevice/CAL/device_cal.c **** {
+  28              		.loc 1 4 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 4 1 is_stmt 0 view .LVU1
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+   5:App/SmartDevice/CAL/device_cal.c ****     /* 针对裸机，注册中断*/
+   6:App/SmartDevice/CAL/device_cal.c ****     return Led_Init(pLedDevice);
+  38              		.loc 1 6 5 is_stmt 1 view .LVU2
+  39              		.loc 1 6 12 is_stmt 0 view .LVU3
+  40 0002 FFF7FEFF 		bl	Led_Init
+  41              	.LVL1:
+   7:App/SmartDevice/CAL/device_cal.c **** 
+   8:App/SmartDevice/CAL/device_cal.c ****     /* 针对RTOS，创建任务*/
+   9:App/SmartDevice/CAL/device_cal.c **** }
+  42              		.loc 1 9 1 view .LVU4
+  43 0006 08BD     		pop	{r3, pc}
+  44              		.cfi_endproc
+  45              	.LFE68:
+  47              		.section	.text.CAL_LedDeviceControl,"ax",%progbits
+  48              		.align	1
+  49              		.global	CAL_LedDeviceControl
+  50              		.syntax unified
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc1Gq5e3.s 			page 2
+
+
+  51              		.thumb
+  52              		.thumb_func
+  54              	CAL_LedDeviceControl:
+  55              	.LVL2:
+  56              	.LFB69:
+  10:App/SmartDevice/CAL/device_cal.c **** 
+  11:App/SmartDevice/CAL/device_cal.c **** int CAL_LedDeviceControl(LedDevice *pLedDevice, int iStatus)
+  12:App/SmartDevice/CAL/device_cal.c **** {
+  57              		.loc 1 12 1 is_stmt 1 view -0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              		.loc 1 12 1 is_stmt 0 view .LVU6
+  62 0000 08B5     		push	{r3, lr}
+  63              	.LCFI1:
+  64              		.cfi_def_cfa_offset 8
+  65              		.cfi_offset 3, -8
+  66              		.cfi_offset 14, -4
+  13:App/SmartDevice/CAL/device_cal.c ****     /* 针对裸机，注册中断*/
+  14:App/SmartDevice/CAL/device_cal.c ****     return LedControl(pLedDevice, iStatus);
+  67              		.loc 1 14 5 is_stmt 1 view .LVU7
+  68              		.loc 1 14 12 is_stmt 0 view .LVU8
+  69 0002 FFF7FEFF 		bl	LedControl
+  70              	.LVL3:
+  15:App/SmartDevice/CAL/device_cal.c **** 
+  16:App/SmartDevice/CAL/device_cal.c ****     /* 针对RTOS，创建任务*/
+  17:App/SmartDevice/CAL/device_cal.c **** }
+  71              		.loc 1 17 1 view .LVU9
+  72 0006 08BD     		pop	{r3, pc}
+  73              		.cfi_endproc
+  74              	.LFE69:
+  76              		.text
+  77              	.Letext0:
+  78              		.file 2 "App/SmartDevice/SubSystems/system_type.h"
+  79              		.file 3 "App/SmartDevice/ModuleDriver/led_driver.h"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cc1Gq5e3.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 device_cal.c
+C:\Users\ADMINI~1\AppData\Local\Temp\cc1Gq5e3.s:18     .text.CAL_LedDeviceInit:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cc1Gq5e3.s:24     .text.CAL_LedDeviceInit:0000000000000000 CAL_LedDeviceInit
+C:\Users\ADMINI~1\AppData\Local\Temp\cc1Gq5e3.s:48     .text.CAL_LedDeviceControl:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cc1Gq5e3.s:54     .text.CAL_LedDeviceControl:0000000000000000 CAL_LedDeviceControl
+
+UNDEFINED SYMBOLS
+Led_Init
+LedControl

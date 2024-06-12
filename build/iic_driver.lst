@@ -1,0 +1,1012 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"iic_driver.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.us_delay,"ax",%progbits
+  18              		.align	1
+  19              		.global	us_delay
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	us_delay:
+  25              	.LVL0:
+  26              	.LFB68:
+  27              		.file 1 "App/UserDrivers/iic_driver.c"
+   1:App/UserDrivers/iic_driver.c **** #include "iic_driver.h"
+   2:App/UserDrivers/iic_driver.c **** 
+   3:App/UserDrivers/iic_driver.c **** 
+   4:App/UserDrivers/iic_driver.c **** void us_delay(uint32_t nCount)
+   5:App/UserDrivers/iic_driver.c **** {
+  28              		.loc 1 5 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+   6:App/UserDrivers/iic_driver.c ****     uint16_t counter = 0;
+  33              		.loc 1 6 5 view .LVU1
+   7:App/UserDrivers/iic_driver.c **** 	
+   8:App/UserDrivers/iic_driver.c **** 	while(nCount--)
+  34              		.loc 1 8 2 view .LVU2
+  35              		.loc 1 8 7 is_stmt 0 view .LVU3
+  36 0000 05E0     		b	.L2
+  37              	.LVL1:
+  38              	.L4:
+   9:App/UserDrivers/iic_driver.c **** 	{
+  10:App/UserDrivers/iic_driver.c **** 		counter=10; 
+  39              		.loc 1 10 10 view .LVU4
+  40 0002 0A23     		movs	r3, #10
+  41              	.L3:
+  42              	.LVL2:
+  11:App/UserDrivers/iic_driver.c **** 		
+  12:App/UserDrivers/iic_driver.c **** 		while(counter--) ;    
+  43              		.loc 1 12 20 is_stmt 1 discriminator 1 view .LVU5
+  44              		.loc 1 12 8 discriminator 1 view .LVU6
+  45 0004 1A46     		mov	r2, r3
+  46              		.loc 1 12 16 is_stmt 0 discriminator 1 view .LVU7
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 2
+
+
+  47 0006 013B     		subs	r3, r3, #1
+  48              	.LVL3:
+  49              		.loc 1 12 16 discriminator 1 view .LVU8
+  50 0008 9BB2     		uxth	r3, r3
+  51              	.LVL4:
+  52              		.loc 1 12 8 discriminator 1 view .LVU9
+  53 000a 002A     		cmp	r2, #0
+  54 000c FAD1     		bne	.L3
+  55              	.LVL5:
+  56              	.L2:
+   8:App/UserDrivers/iic_driver.c **** 	{
+  57              		.loc 1 8 7 is_stmt 1 view .LVU10
+  58 000e 0346     		mov	r3, r0
+   8:App/UserDrivers/iic_driver.c **** 	{
+  59              		.loc 1 8 14 is_stmt 0 view .LVU11
+  60 0010 0138     		subs	r0, r0, #1
+  61              	.LVL6:
+   8:App/UserDrivers/iic_driver.c **** 	{
+  62              		.loc 1 8 7 view .LVU12
+  63 0012 002B     		cmp	r3, #0
+  64 0014 F5D1     		bne	.L4
+  13:App/UserDrivers/iic_driver.c **** 	}
+  14:App/UserDrivers/iic_driver.c **** }
+  65              		.loc 1 14 1 view .LVU13
+  66 0016 7047     		bx	lr
+  67              		.cfi_endproc
+  68              	.LFE68:
+  70              		.section	.text.IIC_Init,"ax",%progbits
+  71              		.align	1
+  72              		.global	IIC_Init
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  77              	IIC_Init:
+  78              	.LFB69:
+  15:App/UserDrivers/iic_driver.c **** 
+  16:App/UserDrivers/iic_driver.c **** #define IIC_Delay()     us_delay(1)
+  17:App/UserDrivers/iic_driver.c **** 
+  18:App/UserDrivers/iic_driver.c **** void IIC_Init(void)
+  19:App/UserDrivers/iic_driver.c **** {
+  79              		.loc 1 19 1 is_stmt 1 view -0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 40
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83 0000 10B5     		push	{r4, lr}
+  84              	.LCFI0:
+  85              		.cfi_def_cfa_offset 8
+  86              		.cfi_offset 4, -8
+  87              		.cfi_offset 14, -4
+  88 0002 8AB0     		sub	sp, sp, #40
+  89              	.LCFI1:
+  90              		.cfi_def_cfa_offset 48
+  20:App/UserDrivers/iic_driver.c ****     GPIO_InitTypeDef GPIO_InitStruct = {0};
+  91              		.loc 1 20 5 view .LVU15
+  92              		.loc 1 20 22 is_stmt 0 view .LVU16
+  93 0004 0023     		movs	r3, #0
+  94 0006 0693     		str	r3, [sp, #24]
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 3
+
+
+  95 0008 0793     		str	r3, [sp, #28]
+  96 000a 0893     		str	r3, [sp, #32]
+  97 000c 0993     		str	r3, [sp, #36]
+  21:App/UserDrivers/iic_driver.c **** 
+  22:App/UserDrivers/iic_driver.c ****     __HAL_RCC_GPIOE_CLK_ENABLE();
+  98              		.loc 1 22 5 is_stmt 1 view .LVU17
+  99              	.LBB2:
+ 100              		.loc 1 22 5 view .LVU18
+ 101              		.loc 1 22 5 view .LVU19
+ 102 000e 03F18043 		add	r3, r3, #1073741824
+ 103 0012 03F50433 		add	r3, r3, #135168
+ 104 0016 9A69     		ldr	r2, [r3, #24]
+ 105 0018 42F04002 		orr	r2, r2, #64
+ 106 001c 9A61     		str	r2, [r3, #24]
+ 107              		.loc 1 22 5 view .LVU20
+ 108 001e 9A69     		ldr	r2, [r3, #24]
+ 109 0020 02F04002 		and	r2, r2, #64
+ 110 0024 0192     		str	r2, [sp, #4]
+ 111              		.loc 1 22 5 view .LVU21
+ 112 0026 019A     		ldr	r2, [sp, #4]
+ 113              	.LBE2:
+ 114              		.loc 1 22 5 view .LVU22
+  23:App/UserDrivers/iic_driver.c ****     __HAL_RCC_GPIOC_CLK_ENABLE();
+ 115              		.loc 1 23 5 view .LVU23
+ 116              	.LBB3:
+ 117              		.loc 1 23 5 view .LVU24
+ 118              		.loc 1 23 5 view .LVU25
+ 119 0028 9A69     		ldr	r2, [r3, #24]
+ 120 002a 42F01002 		orr	r2, r2, #16
+ 121 002e 9A61     		str	r2, [r3, #24]
+ 122              		.loc 1 23 5 view .LVU26
+ 123 0030 9A69     		ldr	r2, [r3, #24]
+ 124 0032 02F01002 		and	r2, r2, #16
+ 125 0036 0292     		str	r2, [sp, #8]
+ 126              		.loc 1 23 5 view .LVU27
+ 127 0038 029A     		ldr	r2, [sp, #8]
+ 128              	.LBE3:
+ 129              		.loc 1 23 5 view .LVU28
+  24:App/UserDrivers/iic_driver.c ****     __HAL_RCC_GPIOF_CLK_ENABLE();
+ 130              		.loc 1 24 5 view .LVU29
+ 131              	.LBB4:
+ 132              		.loc 1 24 5 view .LVU30
+ 133              		.loc 1 24 5 view .LVU31
+ 134 003a 9A69     		ldr	r2, [r3, #24]
+ 135 003c 42F08002 		orr	r2, r2, #128
+ 136 0040 9A61     		str	r2, [r3, #24]
+ 137              		.loc 1 24 5 view .LVU32
+ 138 0042 9A69     		ldr	r2, [r3, #24]
+ 139 0044 02F08002 		and	r2, r2, #128
+ 140 0048 0392     		str	r2, [sp, #12]
+ 141              		.loc 1 24 5 view .LVU33
+ 142 004a 039A     		ldr	r2, [sp, #12]
+ 143              	.LBE4:
+ 144              		.loc 1 24 5 view .LVU34
+  25:App/UserDrivers/iic_driver.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();IIC_Delay();
+ 145              		.loc 1 25 5 view .LVU35
+ 146              	.LBB5:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 4
+
+
+ 147              		.loc 1 25 5 view .LVU36
+ 148              		.loc 1 25 5 view .LVU37
+ 149 004c 9A69     		ldr	r2, [r3, #24]
+ 150 004e 42F02002 		orr	r2, r2, #32
+ 151 0052 9A61     		str	r2, [r3, #24]
+ 152              		.loc 1 25 5 view .LVU38
+ 153 0054 9A69     		ldr	r2, [r3, #24]
+ 154 0056 02F02002 		and	r2, r2, #32
+ 155 005a 0492     		str	r2, [sp, #16]
+ 156              		.loc 1 25 5 view .LVU39
+ 157 005c 049A     		ldr	r2, [sp, #16]
+ 158              	.LBE5:
+ 159              		.loc 1 25 5 view .LVU40
+ 160              		.loc 1 25 34 view .LVU41
+  26:App/UserDrivers/iic_driver.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 161              		.loc 1 26 5 view .LVU42
+ 162              	.LBB6:
+ 163              		.loc 1 26 5 view .LVU43
+ 164              		.loc 1 26 5 view .LVU44
+ 165 005e 9A69     		ldr	r2, [r3, #24]
+ 166 0060 42F00402 		orr	r2, r2, #4
+ 167 0064 9A61     		str	r2, [r3, #24]
+ 168              		.loc 1 26 5 view .LVU45
+ 169 0066 9B69     		ldr	r3, [r3, #24]
+ 170 0068 03F00403 		and	r3, r3, #4
+ 171 006c 0593     		str	r3, [sp, #20]
+ 172              		.loc 1 26 5 view .LVU46
+ 173 006e 059B     		ldr	r3, [sp, #20]
+ 174              	.LBE6:
+ 175              		.loc 1 26 5 view .LVU47
+  27:App/UserDrivers/iic_driver.c **** 
+  28:App/UserDrivers/iic_driver.c ****     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD; // 设置为开漏模式
+ 176              		.loc 1 28 5 view .LVU48
+ 177              		.loc 1 28 26 is_stmt 0 view .LVU49
+ 178 0070 1123     		movs	r3, #17
+ 179 0072 0793     		str	r3, [sp, #28]
+  29:App/UserDrivers/iic_driver.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 180              		.loc 1 29 5 is_stmt 1 view .LVU50
+ 181              		.loc 1 29 27 is_stmt 0 view .LVU51
+ 182 0074 0223     		movs	r3, #2
+ 183 0076 0993     		str	r3, [sp, #36]
+  30:App/UserDrivers/iic_driver.c **** 
+  31:App/UserDrivers/iic_driver.c ****     GPIO_InitStruct.Pin = SCL_Pin;         // 选择LED的引脚
+ 184              		.loc 1 31 5 is_stmt 1 view .LVU52
+ 185              		.loc 1 31 25 is_stmt 0 view .LVU53
+ 186 0078 4FF48063 		mov	r3, #1024
+ 187 007c 0693     		str	r3, [sp, #24]
+  32:App/UserDrivers/iic_driver.c ****     HAL_GPIO_Init(SCL_GPIO_Port, &GPIO_InitStruct);
+ 188              		.loc 1 32 5 is_stmt 1 view .LVU54
+ 189 007e 074C     		ldr	r4, .L7
+ 190 0080 06A9     		add	r1, sp, #24
+ 191 0082 2046     		mov	r0, r4
+ 192 0084 FFF7FEFF 		bl	HAL_GPIO_Init
+ 193              	.LVL7:
+  33:App/UserDrivers/iic_driver.c **** 
+  34:App/UserDrivers/iic_driver.c ****     GPIO_InitStruct.Pin = SDA_Pin;         // 选择LED的引脚
+ 194              		.loc 1 34 5 view .LVU55
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 5
+
+
+ 195              		.loc 1 34 25 is_stmt 0 view .LVU56
+ 196 0088 4FF40063 		mov	r3, #2048
+ 197 008c 0693     		str	r3, [sp, #24]
+  35:App/UserDrivers/iic_driver.c ****     HAL_GPIO_Init(SDA_GPIO_Port, &GPIO_InitStruct);
+ 198              		.loc 1 35 5 is_stmt 1 view .LVU57
+ 199 008e 06A9     		add	r1, sp, #24
+ 200 0090 2046     		mov	r0, r4
+ 201 0092 FFF7FEFF 		bl	HAL_GPIO_Init
+ 202              	.LVL8:
+  36:App/UserDrivers/iic_driver.c **** 
+  37:App/UserDrivers/iic_driver.c **** }
+ 203              		.loc 1 37 1 is_stmt 0 view .LVU58
+ 204 0096 0AB0     		add	sp, sp, #40
+ 205              	.LCFI2:
+ 206              		.cfi_def_cfa_offset 8
+ 207              		@ sp needed
+ 208 0098 10BD     		pop	{r4, pc}
+ 209              	.L8:
+ 210 009a 00BF     		.align	2
+ 211              	.L7:
+ 212 009c 001C0140 		.word	1073814528
+ 213              		.cfi_endproc
+ 214              	.LFE69:
+ 216              		.section	.text.IIC_Start,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	IIC_Start
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	IIC_Start:
+ 224              	.LFB70:
+  38:App/UserDrivers/iic_driver.c **** 
+  39:App/UserDrivers/iic_driver.c **** void IIC_Start(void)
+  40:App/UserDrivers/iic_driver.c **** {
+ 225              		.loc 1 40 1 is_stmt 1 view -0
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 229 0000 10B5     		push	{r4, lr}
+ 230              	.LCFI3:
+ 231              		.cfi_def_cfa_offset 8
+ 232              		.cfi_offset 4, -8
+ 233              		.cfi_offset 14, -4
+  41:App/UserDrivers/iic_driver.c ****     SCL_H;
+ 234              		.loc 1 41 5 view .LVU60
+ 235 0002 0A4C     		ldr	r4, .L11
+ 236 0004 0122     		movs	r2, #1
+ 237 0006 4FF48061 		mov	r1, #1024
+ 238 000a 2046     		mov	r0, r4
+ 239 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 240              	.LVL9:
+  42:App/UserDrivers/iic_driver.c ****     SDA_H;
+ 241              		.loc 1 42 5 view .LVU61
+ 242 0010 0122     		movs	r2, #1
+ 243 0012 4FF40061 		mov	r1, #2048
+ 244 0016 2046     		mov	r0, r4
+ 245 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 6
+
+
+ 246              	.LVL10:
+  43:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 247              		.loc 1 43 5 view .LVU62
+  44:App/UserDrivers/iic_driver.c ****     SDA_L;
+ 248              		.loc 1 44 5 view .LVU63
+ 249 001c 0022     		movs	r2, #0
+ 250 001e 4FF40061 		mov	r1, #2048
+ 251 0022 2046     		mov	r0, r4
+ 252 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 253              	.LVL11:
+  45:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 254              		.loc 1 45 5 view .LVU64
+  46:App/UserDrivers/iic_driver.c **** }
+ 255              		.loc 1 46 1 is_stmt 0 view .LVU65
+ 256 0028 10BD     		pop	{r4, pc}
+ 257              	.L12:
+ 258 002a 00BF     		.align	2
+ 259              	.L11:
+ 260 002c 001C0140 		.word	1073814528
+ 261              		.cfi_endproc
+ 262              	.LFE70:
+ 264              		.section	.text.IIC_Stop,"ax",%progbits
+ 265              		.align	1
+ 266              		.global	IIC_Stop
+ 267              		.syntax unified
+ 268              		.thumb
+ 269              		.thumb_func
+ 271              	IIC_Stop:
+ 272              	.LFB71:
+  47:App/UserDrivers/iic_driver.c **** 
+  48:App/UserDrivers/iic_driver.c **** void IIC_Stop(void)
+  49:App/UserDrivers/iic_driver.c **** {
+ 273              		.loc 1 49 1 is_stmt 1 view -0
+ 274              		.cfi_startproc
+ 275              		@ args = 0, pretend = 0, frame = 0
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+ 277 0000 10B5     		push	{r4, lr}
+ 278              	.LCFI4:
+ 279              		.cfi_def_cfa_offset 8
+ 280              		.cfi_offset 4, -8
+ 281              		.cfi_offset 14, -4
+  50:App/UserDrivers/iic_driver.c ****    
+  51:App/UserDrivers/iic_driver.c ****     SDA_L;
+ 282              		.loc 1 51 5 view .LVU67
+ 283 0002 0A4C     		ldr	r4, .L15
+ 284 0004 0022     		movs	r2, #0
+ 285 0006 4FF40061 		mov	r1, #2048
+ 286 000a 2046     		mov	r0, r4
+ 287 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 288              	.LVL12:
+  52:App/UserDrivers/iic_driver.c ****     SCL_H;
+ 289              		.loc 1 52 5 view .LVU68
+ 290 0010 0122     		movs	r2, #1
+ 291 0012 4FF48061 		mov	r1, #1024
+ 292 0016 2046     		mov	r0, r4
+ 293 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 294              	.LVL13:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 7
+
+
+  53:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 295              		.loc 1 53 5 view .LVU69
+  54:App/UserDrivers/iic_driver.c ****     SDA_H;
+ 296              		.loc 1 54 5 view .LVU70
+ 297 001c 0122     		movs	r2, #1
+ 298 001e 4FF40061 		mov	r1, #2048
+ 299 0022 2046     		mov	r0, r4
+ 300 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 301              	.LVL14:
+  55:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 302              		.loc 1 55 5 view .LVU71
+  56:App/UserDrivers/iic_driver.c **** }
+ 303              		.loc 1 56 1 is_stmt 0 view .LVU72
+ 304 0028 10BD     		pop	{r4, pc}
+ 305              	.L16:
+ 306 002a 00BF     		.align	2
+ 307              	.L15:
+ 308 002c 001C0140 		.word	1073814528
+ 309              		.cfi_endproc
+ 310              	.LFE71:
+ 312              		.section	.text.IIC_GetAck,"ax",%progbits
+ 313              		.align	1
+ 314              		.global	IIC_GetAck
+ 315              		.syntax unified
+ 316              		.thumb
+ 317              		.thumb_func
+ 319              	IIC_GetAck:
+ 320              	.LFB72:
+  57:App/UserDrivers/iic_driver.c **** 
+  58:App/UserDrivers/iic_driver.c **** uint32_t IIC_GetAck(void)
+  59:App/UserDrivers/iic_driver.c **** {
+ 321              		.loc 1 59 1 is_stmt 1 view -0
+ 322              		.cfi_startproc
+ 323              		@ args = 0, pretend = 0, frame = 0
+ 324              		@ frame_needed = 0, uses_anonymous_args = 0
+ 325 0000 10B5     		push	{r4, lr}
+ 326              	.LCFI5:
+ 327              		.cfi_def_cfa_offset 8
+ 328              		.cfi_offset 4, -8
+ 329              		.cfi_offset 14, -4
+  60:App/UserDrivers/iic_driver.c ****     uint32_t nCount = 0;
+ 330              		.loc 1 60 5 view .LVU74
+ 331              	.LVL15:
+  61:App/UserDrivers/iic_driver.c ****     SDA_H;                  /*开漏模式下写1，数据线拉高，释放控制权*/
+ 332              		.loc 1 61 5 view .LVU75
+ 333 0002 174C     		ldr	r4, .L23
+ 334 0004 0122     		movs	r2, #1
+ 335 0006 4FF40061 		mov	r1, #2048
+ 336 000a 2046     		mov	r0, r4
+ 337 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 338              	.LVL16:
+  62:App/UserDrivers/iic_driver.c ****     SCL_L;                  /*时钟线拉低，此时数据不可更改，只能交换，允许从
+ 339              		.loc 1 62 5 view .LVU76
+ 340 0010 0022     		movs	r2, #0
+ 341 0012 4FF48061 		mov	r1, #1024
+ 342 0016 2046     		mov	r0, r4
+ 343 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 8
+
+
+ 344              	.LVL17:
+  63:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 345              		.loc 1 63 5 view .LVU77
+  64:App/UserDrivers/iic_driver.c **** 
+  65:App/UserDrivers/iic_driver.c ****     SCL_H;                  /*时钟线拉高，读取数据*/
+ 346              		.loc 1 65 5 view .LVU78
+ 347 001c 0122     		movs	r2, #1
+ 348 001e 4FF48061 		mov	r1, #1024
+ 349 0022 2046     		mov	r0, r4
+ 350 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 351              	.LVL18:
+  66:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 352              		.loc 1 66 5 view .LVU79
+  67:App/UserDrivers/iic_driver.c **** 
+  68:App/UserDrivers/iic_driver.c ****     while (SDA_IN != 0)    /*判断从机是否产生ack，若没有响应，就等待超时*/
+ 353              		.loc 1 68 5 view .LVU80
+  60:App/UserDrivers/iic_driver.c ****     SDA_H;                  /*开漏模式下写1，数据线拉高，释放控制权*/
+ 354              		.loc 1 60 14 is_stmt 0 view .LVU81
+ 355 0028 0024     		movs	r4, #0
+ 356              	.LVL19:
+ 357              	.L18:
+ 358              		.loc 1 68 11 is_stmt 1 view .LVU82
+ 359              		.loc 1 68 12 is_stmt 0 view .LVU83
+ 360 002a 4FF40061 		mov	r1, #2048
+ 361 002e 0C48     		ldr	r0, .L23
+ 362 0030 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 363              	.LVL20:
+ 364              		.loc 1 68 11 view .LVU84
+ 365 0034 58B1     		cbz	r0, .L22
+  69:App/UserDrivers/iic_driver.c ****     {
+  70:App/UserDrivers/iic_driver.c ****         nCount++;
+ 366              		.loc 1 70 9 is_stmt 1 view .LVU85
+ 367              		.loc 1 70 15 is_stmt 0 view .LVU86
+ 368 0036 0134     		adds	r4, r4, #1
+ 369              	.LVL21:
+  71:App/UserDrivers/iic_driver.c ****         if(nCount == 1000)
+ 370              		.loc 1 71 9 is_stmt 1 view .LVU87
+ 371              		.loc 1 71 11 is_stmt 0 view .LVU88
+ 372 0038 B4F57A7F 		cmp	r4, #1000
+ 373 003c F5D1     		bne	.L18
+  72:App/UserDrivers/iic_driver.c ****         {
+  73:App/UserDrivers/iic_driver.c ****             SCL_L; 
+ 374              		.loc 1 73 13 is_stmt 1 view .LVU89
+ 375 003e 0022     		movs	r2, #0
+ 376 0040 4FF48061 		mov	r1, #1024
+ 377 0044 0648     		ldr	r0, .L23
+ 378 0046 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 379              	.LVL22:
+  74:App/UserDrivers/iic_driver.c ****             return 1;
+ 380              		.loc 1 74 13 view .LVU90
+ 381              		.loc 1 74 20 is_stmt 0 view .LVU91
+ 382 004a 0120     		movs	r0, #1
+ 383 004c 06E0     		b	.L17
+ 384              	.L22:
+  75:App/UserDrivers/iic_driver.c ****         }
+  76:App/UserDrivers/iic_driver.c ****     }
+  77:App/UserDrivers/iic_driver.c **** 
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 9
+
+
+  78:App/UserDrivers/iic_driver.c ****     SCL_L;                  /*时钟线拉低，让主机等待从机处理接收数据*/
+ 385              		.loc 1 78 5 is_stmt 1 view .LVU92
+ 386 004e 0022     		movs	r2, #0
+ 387 0050 4FF48061 		mov	r1, #1024
+ 388 0054 0248     		ldr	r0, .L23
+ 389 0056 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 390              	.LVL23:
+  79:App/UserDrivers/iic_driver.c ****     
+  80:App/UserDrivers/iic_driver.c ****     return 0 ;
+ 391              		.loc 1 80 5 view .LVU93
+ 392              		.loc 1 80 12 is_stmt 0 view .LVU94
+ 393 005a 0020     		movs	r0, #0
+ 394              	.L17:
+  81:App/UserDrivers/iic_driver.c **** }
+ 395              		.loc 1 81 1 view .LVU95
+ 396 005c 10BD     		pop	{r4, pc}
+ 397              	.LVL24:
+ 398              	.L24:
+ 399              		.loc 1 81 1 view .LVU96
+ 400 005e 00BF     		.align	2
+ 401              	.L23:
+ 402 0060 001C0140 		.word	1073814528
+ 403              		.cfi_endproc
+ 404              	.LFE72:
+ 406              		.section	.text.IIC_ACK,"ax",%progbits
+ 407              		.align	1
+ 408              		.global	IIC_ACK
+ 409              		.syntax unified
+ 410              		.thumb
+ 411              		.thumb_func
+ 413              	IIC_ACK:
+ 414              	.LFB73:
+  82:App/UserDrivers/iic_driver.c **** 
+  83:App/UserDrivers/iic_driver.c **** void IIC_ACK(void)
+  84:App/UserDrivers/iic_driver.c **** {
+ 415              		.loc 1 84 1 is_stmt 1 view -0
+ 416              		.cfi_startproc
+ 417              		@ args = 0, pretend = 0, frame = 0
+ 418              		@ frame_needed = 0, uses_anonymous_args = 0
+ 419 0000 10B5     		push	{r4, lr}
+ 420              	.LCFI6:
+ 421              		.cfi_def_cfa_offset 8
+ 422              		.cfi_offset 4, -8
+ 423              		.cfi_offset 14, -4
+  85:App/UserDrivers/iic_driver.c ****     SCL_L;
+ 424              		.loc 1 85 5 view .LVU98
+ 425 0002 0A4C     		ldr	r4, .L27
+ 426 0004 0022     		movs	r2, #0
+ 427 0006 4FF48061 		mov	r1, #1024
+ 428 000a 2046     		mov	r0, r4
+ 429 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 430              	.LVL25:
+  86:App/UserDrivers/iic_driver.c ****     SDA_L;
+ 431              		.loc 1 86 5 view .LVU99
+ 432 0010 0022     		movs	r2, #0
+ 433 0012 4FF40061 		mov	r1, #2048
+ 434 0016 2046     		mov	r0, r4
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 10
+
+
+ 435 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 436              	.LVL26:
+  87:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 437              		.loc 1 87 5 view .LVU100
+  88:App/UserDrivers/iic_driver.c **** 
+  89:App/UserDrivers/iic_driver.c ****     SCL_H;
+ 438              		.loc 1 89 5 view .LVU101
+ 439 001c 0122     		movs	r2, #1
+ 440 001e 4FF48061 		mov	r1, #1024
+ 441 0022 2046     		mov	r0, r4
+ 442 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 443              	.LVL27:
+  90:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 444              		.loc 1 90 5 view .LVU102
+  91:App/UserDrivers/iic_driver.c **** }
+ 445              		.loc 1 91 1 is_stmt 0 view .LVU103
+ 446 0028 10BD     		pop	{r4, pc}
+ 447              	.L28:
+ 448 002a 00BF     		.align	2
+ 449              	.L27:
+ 450 002c 001C0140 		.word	1073814528
+ 451              		.cfi_endproc
+ 452              	.LFE73:
+ 454              		.section	.text.IIC_NACK,"ax",%progbits
+ 455              		.align	1
+ 456              		.global	IIC_NACK
+ 457              		.syntax unified
+ 458              		.thumb
+ 459              		.thumb_func
+ 461              	IIC_NACK:
+ 462              	.LFB74:
+  92:App/UserDrivers/iic_driver.c **** 
+  93:App/UserDrivers/iic_driver.c **** void IIC_NACK(void)
+  94:App/UserDrivers/iic_driver.c **** {
+ 463              		.loc 1 94 1 is_stmt 1 view -0
+ 464              		.cfi_startproc
+ 465              		@ args = 0, pretend = 0, frame = 0
+ 466              		@ frame_needed = 0, uses_anonymous_args = 0
+ 467 0000 10B5     		push	{r4, lr}
+ 468              	.LCFI7:
+ 469              		.cfi_def_cfa_offset 8
+ 470              		.cfi_offset 4, -8
+ 471              		.cfi_offset 14, -4
+  95:App/UserDrivers/iic_driver.c ****     SCL_L;
+ 472              		.loc 1 95 5 view .LVU105
+ 473 0002 0A4C     		ldr	r4, .L31
+ 474 0004 0022     		movs	r2, #0
+ 475 0006 4FF48061 		mov	r1, #1024
+ 476 000a 2046     		mov	r0, r4
+ 477 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 478              	.LVL28:
+  96:App/UserDrivers/iic_driver.c ****     SDA_H;
+ 479              		.loc 1 96 5 view .LVU106
+ 480 0010 0122     		movs	r2, #1
+ 481 0012 4FF40061 		mov	r1, #2048
+ 482 0016 2046     		mov	r0, r4
+ 483 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 11
+
+
+ 484              	.LVL29:
+  97:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 485              		.loc 1 97 5 view .LVU107
+  98:App/UserDrivers/iic_driver.c **** 
+  99:App/UserDrivers/iic_driver.c ****     SCL_H;
+ 486              		.loc 1 99 5 view .LVU108
+ 487 001c 0122     		movs	r2, #1
+ 488 001e 4FF48061 		mov	r1, #1024
+ 489 0022 2046     		mov	r0, r4
+ 490 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 491              	.LVL30:
+ 100:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 492              		.loc 1 100 5 view .LVU109
+ 101:App/UserDrivers/iic_driver.c **** 
+ 102:App/UserDrivers/iic_driver.c **** }
+ 493              		.loc 1 102 1 is_stmt 0 view .LVU110
+ 494 0028 10BD     		pop	{r4, pc}
+ 495              	.L32:
+ 496 002a 00BF     		.align	2
+ 497              	.L31:
+ 498 002c 001C0140 		.word	1073814528
+ 499              		.cfi_endproc
+ 500              	.LFE74:
+ 502              		.section	.text.IIC_WriteByteData,"ax",%progbits
+ 503              		.align	1
+ 504              		.global	IIC_WriteByteData
+ 505              		.syntax unified
+ 506              		.thumb
+ 507              		.thumb_func
+ 509              	IIC_WriteByteData:
+ 510              	.LVL31:
+ 511              	.LFB75:
+ 103:App/UserDrivers/iic_driver.c **** 
+ 104:App/UserDrivers/iic_driver.c **** void IIC_WriteByteData(uint8_t data)
+ 105:App/UserDrivers/iic_driver.c **** {
+ 512              		.loc 1 105 1 is_stmt 1 view -0
+ 513              		.cfi_startproc
+ 514              		@ args = 0, pretend = 0, frame = 0
+ 515              		@ frame_needed = 0, uses_anonymous_args = 0
+ 516              		.loc 1 105 1 is_stmt 0 view .LVU112
+ 517 0000 38B5     		push	{r3, r4, r5, lr}
+ 518              	.LCFI8:
+ 519              		.cfi_def_cfa_offset 16
+ 520              		.cfi_offset 3, -16
+ 521              		.cfi_offset 4, -12
+ 522              		.cfi_offset 5, -8
+ 523              		.cfi_offset 14, -4
+ 524 0002 0446     		mov	r4, r0
+ 106:App/UserDrivers/iic_driver.c ****     for(uint32_t i = 0; i < 8; i++)
+ 525              		.loc 1 106 5 is_stmt 1 view .LVU113
+ 526              	.LBB7:
+ 527              		.loc 1 106 9 view .LVU114
+ 528              	.LVL32:
+ 529              		.loc 1 106 18 is_stmt 0 view .LVU115
+ 530 0004 0025     		movs	r5, #0
+ 531              		.loc 1 106 5 view .LVU116
+ 532 0006 0EE0     		b	.L34
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 12
+
+
+ 533              	.LVL33:
+ 534              	.L35:
+ 107:App/UserDrivers/iic_driver.c ****     {
+ 108:App/UserDrivers/iic_driver.c ****         SCL_L;                  /*时钟线拉低，交换数据*/
+ 109:App/UserDrivers/iic_driver.c ****         IIC_Delay();
+ 110:App/UserDrivers/iic_driver.c **** 
+ 111:App/UserDrivers/iic_driver.c ****         if(data & 0x80)
+ 112:App/UserDrivers/iic_driver.c ****         {
+ 113:App/UserDrivers/iic_driver.c ****             SDA_H;
+ 114:App/UserDrivers/iic_driver.c ****         }
+ 115:App/UserDrivers/iic_driver.c ****         else
+ 116:App/UserDrivers/iic_driver.c ****         {
+ 117:App/UserDrivers/iic_driver.c ****             SDA_L;
+ 535              		.loc 1 117 13 is_stmt 1 view .LVU117
+ 536 0008 0022     		movs	r2, #0
+ 537 000a 4FF40061 		mov	r1, #2048
+ 538 000e 1348     		ldr	r0, .L40
+ 539 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 540              	.LVL34:
+ 541              	.L36:
+ 118:App/UserDrivers/iic_driver.c ****         }
+ 119:App/UserDrivers/iic_driver.c **** 
+ 120:App/UserDrivers/iic_driver.c ****         data = data << 1;
+ 542              		.loc 1 120 9 discriminator 2 view .LVU118
+ 543              		.loc 1 120 14 is_stmt 0 discriminator 2 view .LVU119
+ 544 0014 6400     		lsls	r4, r4, #1
+ 545              	.LVL35:
+ 546              		.loc 1 120 14 discriminator 2 view .LVU120
+ 547 0016 E4B2     		uxtb	r4, r4
+ 548              	.LVL36:
+ 121:App/UserDrivers/iic_driver.c ****         SCL_H;                  /*时钟线拉高，读取数据*/
+ 549              		.loc 1 121 9 is_stmt 1 discriminator 2 view .LVU121
+ 550 0018 0122     		movs	r2, #1
+ 551 001a 4FF48061 		mov	r1, #1024
+ 552 001e 0F48     		ldr	r0, .L40
+ 553 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 554              	.LVL37:
+ 122:App/UserDrivers/iic_driver.c ****         IIC_Delay();
+ 555              		.loc 1 122 9 discriminator 2 view .LVU122
+ 106:App/UserDrivers/iic_driver.c ****     {
+ 556              		.loc 1 106 32 discriminator 2 view .LVU123
+ 106:App/UserDrivers/iic_driver.c ****     {
+ 557              		.loc 1 106 33 is_stmt 0 discriminator 2 view .LVU124
+ 558 0024 0135     		adds	r5, r5, #1
+ 559              	.LVL38:
+ 560              	.L34:
+ 106:App/UserDrivers/iic_driver.c ****     {
+ 561              		.loc 1 106 25 is_stmt 1 discriminator 1 view .LVU125
+ 106:App/UserDrivers/iic_driver.c ****     {
+ 562              		.loc 1 106 5 is_stmt 0 discriminator 1 view .LVU126
+ 563 0026 072D     		cmp	r5, #7
+ 564 0028 0FD8     		bhi	.L39
+ 108:App/UserDrivers/iic_driver.c ****         IIC_Delay();
+ 565              		.loc 1 108 9 is_stmt 1 view .LVU127
+ 566 002a 0022     		movs	r2, #0
+ 567 002c 4FF48061 		mov	r1, #1024
+ 568 0030 0A48     		ldr	r0, .L40
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 13
+
+
+ 569 0032 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 570              	.LVL39:
+ 109:App/UserDrivers/iic_driver.c **** 
+ 571              		.loc 1 109 9 view .LVU128
+ 111:App/UserDrivers/iic_driver.c ****         {
+ 572              		.loc 1 111 9 view .LVU129
+ 111:App/UserDrivers/iic_driver.c ****         {
+ 573              		.loc 1 111 11 is_stmt 0 view .LVU130
+ 574 0036 14F0800F 		tst	r4, #128
+ 575 003a E5D0     		beq	.L35
+ 113:App/UserDrivers/iic_driver.c ****         }
+ 576              		.loc 1 113 13 is_stmt 1 view .LVU131
+ 577 003c 0122     		movs	r2, #1
+ 578 003e 4FF40061 		mov	r1, #2048
+ 579 0042 0648     		ldr	r0, .L40
+ 580 0044 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 581              	.LVL40:
+ 582 0048 E4E7     		b	.L36
+ 583              	.L39:
+ 584              	.LBE7:
+ 123:App/UserDrivers/iic_driver.c ****     }
+ 124:App/UserDrivers/iic_driver.c **** 
+ 125:App/UserDrivers/iic_driver.c ****     SCL_L;
+ 585              		.loc 1 125 5 view .LVU132
+ 586 004a 0022     		movs	r2, #0
+ 587 004c 4FF48061 		mov	r1, #1024
+ 588 0050 0248     		ldr	r0, .L40
+ 589 0052 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 590              	.LVL41:
+ 126:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 591              		.loc 1 126 5 view .LVU133
+ 127:App/UserDrivers/iic_driver.c ****     IIC_GetAck();
+ 592              		.loc 1 127 5 view .LVU134
+ 593 0056 FFF7FEFF 		bl	IIC_GetAck
+ 594              	.LVL42:
+ 128:App/UserDrivers/iic_driver.c **** }
+ 595              		.loc 1 128 1 is_stmt 0 view .LVU135
+ 596 005a 38BD     		pop	{r3, r4, r5, pc}
+ 597              	.LVL43:
+ 598              	.L41:
+ 599              		.loc 1 128 1 view .LVU136
+ 600              		.align	2
+ 601              	.L40:
+ 602 005c 001C0140 		.word	1073814528
+ 603              		.cfi_endproc
+ 604              	.LFE75:
+ 606              		.section	.text.IIC_ReadByteData,"ax",%progbits
+ 607              		.align	1
+ 608              		.global	IIC_ReadByteData
+ 609              		.syntax unified
+ 610              		.thumb
+ 611              		.thumb_func
+ 613              	IIC_ReadByteData:
+ 614              	.LVL44:
+ 615              	.LFB76:
+ 129:App/UserDrivers/iic_driver.c **** 
+ 130:App/UserDrivers/iic_driver.c **** uint8_t IIC_ReadByteData(uint8_t ack)
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 14
+
+
+ 131:App/UserDrivers/iic_driver.c **** {
+ 616              		.loc 1 131 1 is_stmt 1 view -0
+ 617              		.cfi_startproc
+ 618              		@ args = 0, pretend = 0, frame = 0
+ 619              		@ frame_needed = 0, uses_anonymous_args = 0
+ 620              		.loc 1 131 1 is_stmt 0 view .LVU138
+ 621 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 622              	.LCFI9:
+ 623              		.cfi_def_cfa_offset 24
+ 624              		.cfi_offset 3, -24
+ 625              		.cfi_offset 4, -20
+ 626              		.cfi_offset 5, -16
+ 627              		.cfi_offset 6, -12
+ 628              		.cfi_offset 7, -8
+ 629              		.cfi_offset 14, -4
+ 630 0002 0746     		mov	r7, r0
+ 132:App/UserDrivers/iic_driver.c ****     uint8_t rxdata = 0;
+ 631              		.loc 1 132 5 is_stmt 1 view .LVU139
+ 632              	.LVL45:
+ 133:App/UserDrivers/iic_driver.c ****     SCL_L;    
+ 633              		.loc 1 133 5 view .LVU140
+ 634 0004 0022     		movs	r2, #0
+ 635 0006 4FF48061 		mov	r1, #1024
+ 636 000a 1948     		ldr	r0, .L53
+ 637              	.LVL46:
+ 638              		.loc 1 133 5 is_stmt 0 view .LVU141
+ 639 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 640              	.LVL47:
+ 134:App/UserDrivers/iic_driver.c ****     IIC_Delay();
+ 641              		.loc 1 134 5 is_stmt 1 view .LVU142
+ 135:App/UserDrivers/iic_driver.c **** 
+ 136:App/UserDrivers/iic_driver.c ****     for(uint32_t i = 0; i < 8; i++)
+ 642              		.loc 1 136 5 view .LVU143
+ 643              	.LBB8:
+ 644              		.loc 1 136 9 view .LVU144
+ 645              		.loc 1 136 18 is_stmt 0 view .LVU145
+ 646 0010 0025     		movs	r5, #0
+ 647              	.LBE8:
+ 132:App/UserDrivers/iic_driver.c ****     SCL_L;    
+ 648              		.loc 1 132 13 view .LVU146
+ 649 0012 2C46     		mov	r4, r5
+ 650              	.LBB9:
+ 651              		.loc 1 136 5 view .LVU147
+ 652 0014 0BE0     		b	.L43
+ 653              	.LVL48:
+ 654              	.L44:
+ 137:App/UserDrivers/iic_driver.c ****     {
+ 138:App/UserDrivers/iic_driver.c ****         SCL_H;                  /*时钟线拉高，读取数据*/
+ 139:App/UserDrivers/iic_driver.c ****         IIC_Delay();
+ 140:App/UserDrivers/iic_driver.c **** 
+ 141:App/UserDrivers/iic_driver.c ****         rxdata = rxdata << 1;
+ 142:App/UserDrivers/iic_driver.c ****         if(SDA_IN == 1)
+ 143:App/UserDrivers/iic_driver.c ****         {
+ 144:App/UserDrivers/iic_driver.c ****             rxdata |= 0x01;
+ 145:App/UserDrivers/iic_driver.c ****         }
+ 146:App/UserDrivers/iic_driver.c ****         else if (SDA_IN == 0)
+ 655              		.loc 1 146 14 is_stmt 1 view .LVU148
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 15
+
+
+ 656              		.loc 1 146 18 is_stmt 0 view .LVU149
+ 657 0016 4FF40061 		mov	r1, #2048
+ 658 001a 1548     		ldr	r0, .L53
+ 659 001c FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 660              	.LVL49:
+ 661              	.L45:
+ 147:App/UserDrivers/iic_driver.c ****         {
+ 148:App/UserDrivers/iic_driver.c ****             rxdata |= 0x00;
+ 149:App/UserDrivers/iic_driver.c ****         }
+ 150:App/UserDrivers/iic_driver.c **** 
+ 151:App/UserDrivers/iic_driver.c ****         SCL_L;                  /*时钟线拉低，读取数据*/
+ 662              		.loc 1 151 9 is_stmt 1 discriminator 2 view .LVU150
+ 663 0020 0022     		movs	r2, #0
+ 664 0022 4FF48061 		mov	r1, #1024
+ 665 0026 1248     		ldr	r0, .L53
+ 666 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 667              	.LVL50:
+ 152:App/UserDrivers/iic_driver.c ****         IIC_Delay();
+ 668              		.loc 1 152 9 discriminator 2 view .LVU151
+ 136:App/UserDrivers/iic_driver.c ****     {
+ 669              		.loc 1 136 32 discriminator 2 view .LVU152
+ 136:App/UserDrivers/iic_driver.c ****     {
+ 670              		.loc 1 136 33 is_stmt 0 discriminator 2 view .LVU153
+ 671 002c 0135     		adds	r5, r5, #1
+ 672              	.LVL51:
+ 673              	.L43:
+ 136:App/UserDrivers/iic_driver.c ****     {
+ 674              		.loc 1 136 25 is_stmt 1 discriminator 1 view .LVU154
+ 136:App/UserDrivers/iic_driver.c ****     {
+ 675              		.loc 1 136 5 is_stmt 0 discriminator 1 view .LVU155
+ 676 002e 072D     		cmp	r5, #7
+ 677 0030 12D8     		bhi	.L50
+ 138:App/UserDrivers/iic_driver.c ****         IIC_Delay();
+ 678              		.loc 1 138 9 is_stmt 1 view .LVU156
+ 679 0032 0F4E     		ldr	r6, .L53
+ 680 0034 0122     		movs	r2, #1
+ 681 0036 4FF48061 		mov	r1, #1024
+ 682 003a 3046     		mov	r0, r6
+ 683 003c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 684              	.LVL52:
+ 139:App/UserDrivers/iic_driver.c **** 
+ 685              		.loc 1 139 9 view .LVU157
+ 141:App/UserDrivers/iic_driver.c ****         if(SDA_IN == 1)
+ 686              		.loc 1 141 9 view .LVU158
+ 141:App/UserDrivers/iic_driver.c ****         if(SDA_IN == 1)
+ 687              		.loc 1 141 16 is_stmt 0 view .LVU159
+ 688 0040 6400     		lsls	r4, r4, #1
+ 689              	.LVL53:
+ 141:App/UserDrivers/iic_driver.c ****         if(SDA_IN == 1)
+ 690              		.loc 1 141 16 view .LVU160
+ 691 0042 E4B2     		uxtb	r4, r4
+ 692              	.LVL54:
+ 142:App/UserDrivers/iic_driver.c ****         {
+ 693              		.loc 1 142 9 is_stmt 1 view .LVU161
+ 142:App/UserDrivers/iic_driver.c ****         {
+ 694              		.loc 1 142 12 is_stmt 0 view .LVU162
+ 695 0044 4FF40061 		mov	r1, #2048
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 16
+
+
+ 696 0048 3046     		mov	r0, r6
+ 697 004a FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 698              	.LVL55:
+ 142:App/UserDrivers/iic_driver.c ****         {
+ 699              		.loc 1 142 11 view .LVU163
+ 700 004e 0128     		cmp	r0, #1
+ 701 0050 E1D1     		bne	.L44
+ 144:App/UserDrivers/iic_driver.c ****         }
+ 702              		.loc 1 144 13 is_stmt 1 view .LVU164
+ 144:App/UserDrivers/iic_driver.c ****         }
+ 703              		.loc 1 144 20 is_stmt 0 view .LVU165
+ 704 0052 44F00104 		orr	r4, r4, #1
+ 705              	.LVL56:
+ 144:App/UserDrivers/iic_driver.c ****         }
+ 706              		.loc 1 144 20 view .LVU166
+ 707 0056 E3E7     		b	.L45
+ 708              	.L50:
+ 144:App/UserDrivers/iic_driver.c ****         }
+ 709              		.loc 1 144 20 view .LVU167
+ 710              	.LBE9:
+ 153:App/UserDrivers/iic_driver.c ****     }
+ 154:App/UserDrivers/iic_driver.c **** 
+ 155:App/UserDrivers/iic_driver.c ****     if(ack == 0)
+ 711              		.loc 1 155 5 is_stmt 1 view .LVU168
+ 712              		.loc 1 155 7 is_stmt 0 view .LVU169
+ 713 0058 1FB1     		cbz	r7, .L51
+ 156:App/UserDrivers/iic_driver.c ****     {
+ 157:App/UserDrivers/iic_driver.c ****         IIC_ACK();
+ 158:App/UserDrivers/iic_driver.c ****     }
+ 159:App/UserDrivers/iic_driver.c ****     else if (ack == 1)
+ 714              		.loc 1 159 10 is_stmt 1 view .LVU170
+ 715              		.loc 1 159 13 is_stmt 0 view .LVU171
+ 716 005a 012F     		cmp	r7, #1
+ 717 005c 04D0     		beq	.L52
+ 718              	.L48:
+ 160:App/UserDrivers/iic_driver.c ****     {
+ 161:App/UserDrivers/iic_driver.c ****         IIC_NACK();
+ 162:App/UserDrivers/iic_driver.c ****     }
+ 163:App/UserDrivers/iic_driver.c ****     
+ 164:App/UserDrivers/iic_driver.c ****     return rxdata;
+ 719              		.loc 1 164 5 is_stmt 1 view .LVU172
+ 165:App/UserDrivers/iic_driver.c **** }
+ 720              		.loc 1 165 1 is_stmt 0 view .LVU173
+ 721 005e 2046     		mov	r0, r4
+ 722 0060 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 723              	.LVL57:
+ 724              	.L51:
+ 157:App/UserDrivers/iic_driver.c ****     }
+ 725              		.loc 1 157 9 is_stmt 1 view .LVU174
+ 726 0062 FFF7FEFF 		bl	IIC_ACK
+ 727              	.LVL58:
+ 728 0066 FAE7     		b	.L48
+ 729              	.L52:
+ 161:App/UserDrivers/iic_driver.c ****     }
+ 730              		.loc 1 161 9 view .LVU175
+ 731 0068 FFF7FEFF 		bl	IIC_NACK
+ 732              	.LVL59:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 17
+
+
+ 733 006c F7E7     		b	.L48
+ 734              	.L54:
+ 735 006e 00BF     		.align	2
+ 736              	.L53:
+ 737 0070 001C0140 		.word	1073814528
+ 738              		.cfi_endproc
+ 739              	.LFE76:
+ 741              		.text
+ 742              	.Letext0:
+ 743              		.file 2 "c:\\env\\embeddedtoolchain\\xpack-arm-none-eabi-gcc-10.3.1-2.3\\arm-none-eabi\\include\\m
+ 744              		.file 3 "c:\\env\\embeddedtoolchain\\xpack-arm-none-eabi-gcc-10.3.1-2.3\\arm-none-eabi\\include\\s
+ 745              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h"
+ 746              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 iic_driver.c
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:18     .text.us_delay:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:24     .text.us_delay:0000000000000000 us_delay
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:71     .text.IIC_Init:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:77     .text.IIC_Init:0000000000000000 IIC_Init
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:212    .text.IIC_Init:000000000000009c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:217    .text.IIC_Start:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:223    .text.IIC_Start:0000000000000000 IIC_Start
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:260    .text.IIC_Start:000000000000002c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:265    .text.IIC_Stop:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:271    .text.IIC_Stop:0000000000000000 IIC_Stop
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:308    .text.IIC_Stop:000000000000002c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:313    .text.IIC_GetAck:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:319    .text.IIC_GetAck:0000000000000000 IIC_GetAck
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:402    .text.IIC_GetAck:0000000000000060 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:407    .text.IIC_ACK:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:413    .text.IIC_ACK:0000000000000000 IIC_ACK
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:450    .text.IIC_ACK:000000000000002c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:455    .text.IIC_NACK:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:461    .text.IIC_NACK:0000000000000000 IIC_NACK
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:498    .text.IIC_NACK:000000000000002c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:503    .text.IIC_WriteByteData:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:509    .text.IIC_WriteByteData:0000000000000000 IIC_WriteByteData
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:602    .text.IIC_WriteByteData:000000000000005c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:607    .text.IIC_ReadByteData:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:613    .text.IIC_ReadByteData:0000000000000000 IIC_ReadByteData
+C:\Users\ADMINI~1\AppData\Local\Temp\ccZoRr28.s:737    .text.IIC_ReadByteData:0000000000000070 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+HAL_GPIO_WritePin
+HAL_GPIO_ReadPin

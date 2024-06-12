@@ -1,0 +1,102 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccoGOP0g.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"general_kal.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.KAL_GetTime,"ax",%progbits
+  18              		.align	1
+  19              		.global	KAL_GetTime
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	KAL_GetTime:
+  25              	.LFB65:
+  26              		.file 1 "App/SmartDevice/KAL/general_kal.c"
+   1:App/SmartDevice/KAL/general_kal.c **** #include "general_kal.h"
+   2:App/SmartDevice/KAL/general_kal.c **** 
+   3:App/SmartDevice/KAL/general_kal.c **** int KAL_GetTime()
+   4:App/SmartDevice/KAL/general_kal.c **** {
+  27              		.loc 1 4 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+   5:App/SmartDevice/KAL/general_kal.c ****     return CAL_GetTime();
+  36              		.loc 1 5 5 view .LVU1
+  37              		.loc 1 5 12 is_stmt 0 view .LVU2
+  38 0002 FFF7FEFF 		bl	CAL_GetTime
+  39              	.LVL0:
+   6:App/SmartDevice/KAL/general_kal.c **** }
+  40              		.loc 1 6 1 view .LVU3
+  41 0006 08BD     		pop	{r3, pc}
+  42              		.cfi_endproc
+  43              	.LFE65:
+  45              		.section	.text.KAL_Delay,"ax",%progbits
+  46              		.align	1
+  47              		.global	KAL_Delay
+  48              		.syntax unified
+  49              		.thumb
+  50              		.thumb_func
+  52              	KAL_Delay:
+  53              	.LVL1:
+  54              	.LFB66:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccoGOP0g.s 			page 2
+
+
+   7:App/SmartDevice/KAL/general_kal.c **** 
+   8:App/SmartDevice/KAL/general_kal.c **** void KAL_Delay(int count)
+   9:App/SmartDevice/KAL/general_kal.c **** {
+  55              		.loc 1 9 1 is_stmt 1 view -0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              		.loc 1 9 1 is_stmt 0 view .LVU5
+  60 0000 08B5     		push	{r3, lr}
+  61              	.LCFI1:
+  62              		.cfi_def_cfa_offset 8
+  63              		.cfi_offset 3, -8
+  64              		.cfi_offset 14, -4
+  10:App/SmartDevice/KAL/general_kal.c ****     return CAL_Delay(count);
+  65              		.loc 1 10 5 is_stmt 1 view .LVU6
+  66              		.loc 1 10 12 is_stmt 0 view .LVU7
+  67 0002 FFF7FEFF 		bl	CAL_Delay
+  68              	.LVL2:
+  11:App/SmartDevice/KAL/general_kal.c **** }...
+  69              		.loc 1 11 1 view .LVU8
+  70 0006 08BD     		pop	{r3, pc}
+  71              		.cfi_endproc
+  72              	.LFE66:
+  74              		.text
+  75              	.Letext0:
+  76              		.file 2 "App/SmartDevice/CAL/general_cal.h"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccoGOP0g.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 general_kal.c
+C:\Users\ADMINI~1\AppData\Local\Temp\ccoGOP0g.s:18     .text.KAL_GetTime:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccoGOP0g.s:24     .text.KAL_GetTime:0000000000000000 KAL_GetTime
+C:\Users\ADMINI~1\AppData\Local\Temp\ccoGOP0g.s:46     .text.KAL_Delay:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccoGOP0g.s:52     .text.KAL_Delay:0000000000000000 KAL_Delay
+
+UNDEFINED SYMBOLS
+CAL_GetTime
+CAL_Delay

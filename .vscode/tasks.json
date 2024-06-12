@@ -1,0 +1,59 @@
+
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {  
+            "label": "adapter server",  
+            "type": "shell",  
+            "command": "node", // 假设你的服务器是用Node.js写的  
+            "args": [  
+                // "/b",
+                // "'node",
+                "--nolazy",
+                "--trace-warnings",
+                "C:\\Users\\Administrator\\.vscode\\extensions\\marus25.cortex-debug-1.12.2-pre\\dist\\debugadapter.js", // 你的服务器脚本的路径  
+                "--server=4711"
+            ],  
+            "problemMatcher": [],  
+            "isBackground": true, // 设置为true以在后台运行任务
+            "group": {  
+                "kind": "build",  
+                // "isDefault": true // 设置为默认任务，这样可以在没有指定任务时运行
+            },
+            // "dependsOn": ["Build Project"],
+        } ,
+        {
+            "label": "Build Project",
+            "type": "shell",
+            "command": "./tool.bat build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ]
+            },
+            "group": {  
+                "kind": "build",  
+                "isDefault": true // 设置为默认任务，这样可以在没有指定任务时运行  
+            },
+            // "dependsOn":["adapter server"]
+        },
+        {
+            "label": "Download Project",
+            "group": "build",
+            "type": "shell",
+            "command": "./tool.bat download",
+            "dependsOn": [
+                "Build Project"
+            ],
+            "dependsOrder": "sequence"
+        },
+
+    ]
+}

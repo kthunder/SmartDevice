@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "*.py": "python",
+        "*.h": "c",
+        "*.makefile": "makefile",
+        "typeinfo": "c",
+        "random": "c"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "cortex-debug.openocdPath": "C:\\ENV\\EMBEDDEDTOOLCHAIN\\XPACK-OPENOCD-0.11.0-5\\BIN\\OPENOCD.EXE",
+    "cortex-debug.variableUseNaturalFormat": false,
+}

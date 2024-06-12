@@ -1,0 +1,104 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccrYxyof.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"input_kal.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.KAL_GpioKeyInit,"ax",%progbits
+  18              		.align	1
+  19              		.global	KAL_GpioKeyInit
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	KAL_GpioKeyInit:
+  25              	.LFB68:
+  26              		.file 1 "App/SmartDevice/KAL/input_kal.c"
+   1:App/SmartDevice/KAL/input_kal.c **** #include "input_kal.h"
+   2:App/SmartDevice/KAL/input_kal.c **** 
+   3:App/SmartDevice/KAL/input_kal.c **** void KAL_GpioKeyInit()
+   4:App/SmartDevice/KAL/input_kal.c **** {
+  27              		.loc 1 4 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+   5:App/SmartDevice/KAL/input_kal.c ****     /* 针对裸机，注册中断*/
+   6:App/SmartDevice/KAL/input_kal.c ****     CAL_GpioKeyInit();
+  36              		.loc 1 6 5 view .LVU1
+  37 0002 FFF7FEFF 		bl	CAL_GpioKeyInit
+  38              	.LVL0:
+   7:App/SmartDevice/KAL/input_kal.c **** 
+   8:App/SmartDevice/KAL/input_kal.c ****     /* 针对RTOS，创建任务*/
+   9:App/SmartDevice/KAL/input_kal.c **** }
+  39              		.loc 1 9 1 is_stmt 0 view .LVU2
+  40 0006 08BD     		pop	{r3, pc}
+  41              		.cfi_endproc
+  42              	.LFE68:
+  44              		.section	.text.KAL_StdIoInit,"ax",%progbits
+  45              		.align	1
+  46              		.global	KAL_StdIoInit
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	KAL_StdIoInit:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccrYxyof.s 			page 2
+
+
+  52              	.LFB69:
+  10:App/SmartDevice/KAL/input_kal.c **** 
+  11:App/SmartDevice/KAL/input_kal.c **** void KAL_StdIoInit()
+  12:App/SmartDevice/KAL/input_kal.c **** {
+  53              		.loc 1 12 1 is_stmt 1 view -0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57 0000 08B5     		push	{r3, lr}
+  58              	.LCFI1:
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 3, -8
+  61              		.cfi_offset 14, -4
+  13:App/SmartDevice/KAL/input_kal.c ****     /* 针对裸机，注册中断*/
+  14:App/SmartDevice/KAL/input_kal.c ****     CAL_StdIoInit();
+  62              		.loc 1 14 5 view .LVU4
+  63 0002 FFF7FEFF 		bl	CAL_StdIoInit
+  64              	.LVL1:
+  15:App/SmartDevice/KAL/input_kal.c **** 
+  16:App/SmartDevice/KAL/input_kal.c ****     /* 针对RTOS，创建任务*/
+  17:App/SmartDevice/KAL/input_kal.c **** }...
+  65              		.loc 1 17 1 is_stmt 0 view .LVU5
+  66 0006 08BD     		pop	{r3, pc}
+  67              		.cfi_endproc
+  68              	.LFE69:
+  70              		.text
+  71              	.Letext0:
+  72              		.file 2 "App/SmartDevice/CAL/input_cal.h"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccrYxyof.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 input_kal.c
+C:\Users\ADMINI~1\AppData\Local\Temp\ccrYxyof.s:18     .text.KAL_GpioKeyInit:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccrYxyof.s:24     .text.KAL_GpioKeyInit:0000000000000000 KAL_GpioKeyInit
+C:\Users\ADMINI~1\AppData\Local\Temp\ccrYxyof.s:45     .text.KAL_StdIoInit:0000000000000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccrYxyof.s:51     .text.KAL_StdIoInit:0000000000000000 KAL_StdIoInit
+
+UNDEFINED SYMBOLS
+CAL_GpioKeyInit
+CAL_StdIoInit
