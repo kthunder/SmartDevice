@@ -38,6 +38,7 @@ BUILD_DIR = build
 C_SOURCES =  \
 App/UserDrivers/iic_driver.c \
 App/UserDrivers/oled_driver.c \
+App/UserDrivers/ascii_font.c \
 App/SmartDevice/ModuleDriver/uart_driver.c \
 App/SmartDevice/ModuleDriver/ring_buffer.c \
 App/SmartDevice/ModuleDriver/key_driver.c \

@@ -28,6 +28,7 @@
 #include "uart_driver.h"
 #include "stm32f1xx_hal_i2c.h"
 #include "input_System.h"
+#include "oled_driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,12 +109,22 @@ int main(void)
 
   SmartDeviceInit();
 
+  Oled_Init();
+
+  OLED_PrintString(0,0,"QQ Love LL !");
+OLED_PrintString(6,0," (*^-^*) ");
+
+
 
   while (1)
   {
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
+// SCROLL_DEACTIVE;
+// Oled_H_Scroll(H_LEFT, 0x00, 0x07, 0x07);
+// SCROLL_ACTIVE;
 
+// KAL_Delay(1500);
     // HAL_Delay(500);
   }
   /* USER CODE END 3 */

@@ -1,11 +1,10 @@
 #ifndef OLED_DRIVER_H
 #define OLED_DRIVER_H
 
-#include "stm32f1xx_hal.h"
-#include "main.h"
 #include "stdio.h"
 
 #include "iic_driver.h"
+#include "ascii_font.h"
 
 #define OLED_WRITE_ADDRESS  0x78
 #define OLED_READ_ADDRESS   0x79
@@ -29,14 +28,14 @@ extern void Oled_SetContrastValue(uint8_t data);
 /* 滚动命令功能函数 */
 typedef enum
 {
-    H_RIGHT         = 0,
-    H_LEFT          = 1,
+    H_RIGHT         = 0x26,
+    H_LEFT          = 0x27,
 }H_SCROLL_DIR;
 
 typedef enum
 {
-    HV_RIGHT         = 0,
-    HV_LEFT          = 1,
+    HV_RIGHT         = 0x29,
+    HV_LEFT          = 0x2A,
 }HV_SCROLL_DIR;
 
 extern uint32_t Oled_H_Scroll(H_SCROLL_DIR dir, uint8_t start, uint8_t frame_time, uint8_t end);
@@ -110,4 +109,6 @@ extern uint32_t Oled_SetChargePump(CHARGE_PUMP_STATE state);
 /* 基本驱动函数 */
 extern void Oled_Init(void);
 extern void Oled_SetPosition(uint8_t page, uint8_t col);;
+extern void OLED_PrintString(uint8_t page, uint8_t col, char *str);
+
 #endif

@@ -298,6 +298,26 @@ uint32_t Oled_SetChargePump(CHARGE_PUMP_STATE state)
     return 0;
 }
 
+/* fundamental driver */
+void Oled_SetPosition(uint8_t page, uint8_t col)
+{
+    Oled_SetPageAddr_Page(page);
+    Oled_SetColAddr_Page(col);
+}
+
+
+void Oled_Clear(void)
+{
+    uint8_t i = 0;
+    uint8_t buf[128] = {0};
+    
+    for(i=0; i<8; i++)
+    {
+        Oled_SetPosition(i, 0);
+        Oled_WriteNByteData(&buf[0], 128);
+    }
+}
+
 void Oled_Init(void)
 {
     Oled_SetAddressMode(PAGE_ADDRESSING_MODE);
@@ -313,32 +333,45 @@ void Oled_Init(void)
     Oled_SetClockDivider(0x00, 0x08);
     Oled_SetChargePump(PUMP_ENABLE);
     DIS_ON;
+
+    Oled_Clear();
 }
 
-/* fundamental driver */
-void Oled_SetPosition(uint8_t page, uint8_t col)
+
+void OLED_PutChar(uint8_t page, uint8_t col, char c)
 {
-    Oled_SetPageAddr_Page(page);
-    Oled_SetColAddr_Page(col);
+    Oled_SetPosition(page, col);
+    Oled_WriteNByteData((uint8_t*)&ascii_font[c][0], 8);
+    
+    Oled_SetPosition(page + 1, col);
+    Oled_WriteNByteData((uint8_t*)&ascii_font[c][8], 8);
 }
 
-
-void OLED_SetCursor(uint8_t Y, uint8_t X)
+/*
+ *  函数名：OLED_PrintString
+ *  功能描述：显示一个字符串
+ *  输入参数：page --> 起始页地址
+ *            col --> 起始列地址
+ *            str -->   显示的字符串
+ *  输出参数：无
+ *  返回值：无
+*/
+void OLED_PrintString(uint8_t page, uint8_t col, char *str)
 {
-	Oled_WriteCmd(0xB0 | Y);					//设置Y位置
-	Oled_WriteCmd(0x10 | ((X & 0xF0) >> 4));	//设置X位置高4位
-	Oled_WriteCmd(0x00 | (X & 0x0F));			//设置X位置低4位
-}
- 
-void OLED_Clear(void)
-{  
-	uint8_t i, j;
-	for (j = 0; j < 8; j++)
-	{
-		OLED_SetCursor(j, 0);
-		for(i = 0; i < 128; i++)
-		{
-			Oled_WriteData(0x00);
-		}
-	}
+    while(*str != 0)
+    {
+        OLED_PutChar(page, col, *str);
+        col += 8;
+        if(col > 127)
+        {
+            page += 2;
+        }
+        
+        if(page > 7)
+        {
+            page = 0;
+        }
+        
+        str++;
+    }
 }
