@@ -72,9 +72,23 @@ void SmartDeviceInit(void)
 
   AddToFanDevice();
   InitFanDevices();
+
 }
 
+void esp_console_start (void)
+{
+	if (is_data_available(&huart1))
+	{
+	  int data = uart_read(&huart1);
+	  uart_write(data, &huart3);
+	}
 
+	if (is_data_available(&huart3))
+	{
+	  int data = uart_read(&huart3);
+	  uart_write(data, &huart1);
+	}
+}
 
 /* USER CODE END 0 */
 
@@ -113,10 +127,13 @@ int main(void)
 
   SmartDeviceInit();
   
+
   while (1)
   {
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
+
+    esp_console_start();
   }
   /* USER CODE END 3 */
 }

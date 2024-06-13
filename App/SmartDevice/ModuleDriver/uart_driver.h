@@ -12,7 +12,7 @@
 #include "ring_Buffer.h"
 #include "general_kal.h"
 
-#define RING_BUFFER_SIZE 100
+#define RING_BUFFER_SIZE 1024
 
 typedef struct RingBuffer
 {

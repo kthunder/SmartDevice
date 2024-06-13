@@ -9,6 +9,6 @@ void CAL_GpioKeyInit()
 
 void CAL_StdIoInit()
 {
-    EnablePrintfIRQ();
+    ring_buffer_init();
 }
 
