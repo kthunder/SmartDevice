@@ -34,7 +34,7 @@ int KAL_DisplayDeviceInit(DisplayDevice *pDisplayDevice)
 }
 
 
-int KAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
+void KAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
 {
 #if defined(CONFIG_NO_OS)
     CAL_DisplayDeviceFlash(pDisplayDevice);

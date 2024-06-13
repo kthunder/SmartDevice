@@ -25,9 +25,9 @@ int CAL_DisplayDeviceInit(DisplayDevice *pDisplayDevice)
 #endif
 }
 
-int CAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
+void CAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
 {
 #if defined(CONFIG_SUPPORT_HAL)
-
+Oled_CopyBuffer(pDisplayDevice->FrameBufferBase);
 #endif
 }

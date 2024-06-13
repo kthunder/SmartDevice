@@ -335,6 +335,7 @@ void Oled_Init(void)
     DIS_ON;
 
     Oled_Clear();
+    // OLED_PrintString(2, 0 ,"Oled");
 }
 
 
@@ -347,15 +348,7 @@ void OLED_PutChar(uint8_t page, uint8_t col, char c)
     Oled_WriteNByteData((uint8_t*)&ascii_font[c][8], 8);
 }
 
-/*
- *  函数名：OLED_PrintString
- *  功能描述：显示一个字符串
- *  输入参数：page --> 起始页地址
- *            col --> 起始列地址
- *            str -->   显示的字符串
- *  输出参数：无
- *  返回值：无
-*/
+
 void OLED_PrintString(uint8_t page, uint8_t col, char *str)
 {
     while(*str != 0)
@@ -373,5 +366,16 @@ void OLED_PrintString(uint8_t page, uint8_t col, char *str)
         }
         
         str++;
+    }
+}
+
+void Oled_CopyBuffer(uint8_t *buf)
+{
+    uint8_t i = 0;
+
+    for(i = 0;i < 8;i++)
+    {
+        Oled_SetPosition(i, 0);
+        Oled_WriteNByteData(&buf[i*128], 128);
     }
 }

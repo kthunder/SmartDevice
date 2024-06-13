@@ -7,10 +7,11 @@
 
 #include "system_type.h"
 #include "device_kal.h"
+#include "string.h"
 
-LedDevice* GetLedDevice(int which);
-
-DisplayDevice* GetDisplayDevice(int which);
+extern void AddDisplayDevice();
+extern void InitDisplayDevices();
+extern DisplayDevice* GetDisplayDevice(char *which);
 
 
 #endif

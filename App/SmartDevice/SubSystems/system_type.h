@@ -120,6 +120,9 @@ typedef struct DisplayDevice
     int iBitPerPic;
     int (*Init)(struct DisplayDevice *pOledDevice);
     void (*Flash)(struct DisplayDevice *pOledDevice);
+    int (*SetPixel)(struct DisplayDevice *pOledDevice, int iX, int iY, int iColor);
+
+    struct DisplayDevice *next;
 }DisplayDevice;
 
 
