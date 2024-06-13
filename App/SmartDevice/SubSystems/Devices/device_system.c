@@ -1,5 +1,6 @@
 #include "device_system.h"
 
+/* LED*/
 static int LedDeviceInit(LedDevice *pLedDevice)
 {
     return KAL_LedDeviceInit(pLedDevice);
@@ -30,6 +31,7 @@ LedDevice* GetLedDevice(int which)
     return &g_ledDevices[which];
 }
 
+/* OLED*/
 /* 在内存中分配一块区域专门写数据，然后通过I2C将数据刷到LCD*/
 static int DisplayDeviceInit(DisplayDevice *pDisplayDevice)
 {
@@ -134,3 +136,6 @@ DisplayDevice* GetDisplayDevice(char *which)
     
     return NULL;
 }
+
+
+/* LED*/
