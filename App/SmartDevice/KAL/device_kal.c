@@ -23,6 +23,7 @@ int KAL_LedDeviceControl(LedDevice *pLedDevice, int iStatus)
 #endif
 }
 
+
 int KAL_DisplayDeviceInit(DisplayDevice *pDisplayDevice)
 {
 #if defined(CONFIG_NO_OS)
@@ -33,11 +34,31 @@ int KAL_DisplayDeviceInit(DisplayDevice *pDisplayDevice)
 #endif
 }
 
-
 void KAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
 {
 #if defined(CONFIG_NO_OS)
     CAL_DisplayDeviceFlash(pDisplayDevice);
+
+#elif defined(CONFIG_FREERTOS)
+
+#endif
+}
+
+
+int KAL_FanDeviceInit(FanDevice *pFanDevice)
+{
+#if defined(CONFIG_NO_OS)
+    return CAL_FanDeviceInit(pFanDevice);
+
+#elif defined(CONFIG_FREERTOS)
+
+#endif
+}
+
+void KAL_FanDeviceControl(FanDevice *pFanDevice, FAN_DIRECTION direct)
+{
+#if defined(CONFIG_NO_OS)
+    CAL_FanDeviceControl(pFanDevice, direct);
 
 #elif defined(CONFIG_FREERTOS)
 

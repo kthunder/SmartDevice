@@ -36,6 +36,7 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
+App/SmartDevice/ModuleDriver/fan_driver.c \
 App/SmartDevice/ModuleDriver/iic_driver.c \
 App/SmartDevice/ModuleDriver/oled_driver.c \
 App/SmartDevice/ModuleDriver/ascii_font.c \

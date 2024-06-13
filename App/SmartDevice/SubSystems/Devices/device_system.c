@@ -138,4 +138,67 @@ DisplayDevice* GetDisplayDevice(char *which)
 }
 
 
-/* LED*/
+/* FAN */
+FanDevice *g_FanDeviceList = NULL;
+
+static void FanDeviceRegister(FanDevice* pFanDevice)
+{
+    if (g_FanDeviceList == NULL)
+    {
+        g_FanDeviceList = pFanDevice;
+    }else
+    {
+        FanDevice* tmp = g_FanDeviceList;
+        while (tmp->next!=NULL)
+        {
+            tmp = tmp->next;
+        }
+        tmp->next = pFanDevice;
+    }
+}
+
+static int FanDeviceInit(FanDevice *pFanDevice)
+{
+    return KAL_FanDeviceInit(pFanDevice);
+}
+
+static void FanDeviceControl(FanDevice *pFanDevice, FAN_DIRECTION direct)
+{
+    KAL_FanDeviceControl(pFanDevice, direct);
+}
+
+static FanDevice g_FanDevices={
+    .name = "FAN",
+    .Init = FanDeviceInit,
+    .Control = FanDeviceControl
+};
+
+void AddToFanDevice()
+{
+    FanDeviceRegister(&g_FanDevices);
+}
+
+void InitFanDevices()
+{
+    FanDevice* tmp = g_FanDeviceList;
+
+    while (tmp !=NULL)
+    {
+        tmp->Init(&g_FanDevices);
+        tmp = tmp ->next;
+    }
+}
+
+FanDevice* GetFanDevice(char *which)
+{
+    FanDevice* pTmp = g_FanDeviceList;
+    while (pTmp)
+    {
+        if(strcmp(pTmp->name, which)==0)
+            return pTmp;
+        else
+            pTmp = pTmp->next;
+    }
+    
+    return NULL;
+}

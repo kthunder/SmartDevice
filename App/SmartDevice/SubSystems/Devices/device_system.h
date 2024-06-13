@@ -9,9 +9,14 @@
 #include "device_kal.h"
 #include "string.h"
 
+extern LedDevice* GetLedDevice(int which);
+
 extern void AddDisplayDevice();
 extern void InitDisplayDevices();
 extern DisplayDevice* GetDisplayDevice(char *which);
 
+extern void AddToFanDevice();
+extern void InitFanDevices();
+extern FanDevice* GetFanDevice(char *which);
 
 #endif

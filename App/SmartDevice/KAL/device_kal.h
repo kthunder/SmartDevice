@@ -8,4 +8,8 @@ extern int KAL_LedDeviceControl(LedDevice *pLedDevice, int iStatus);
 
 extern int KAL_DisplayDeviceInit(DisplayDevice *pDisplayDevice);
 extern void KAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice);
+
+extern int KAL_FanDeviceInit(FanDevice *pFanDevice);
+extern void KAL_FanDeviceControl(FanDevice *pFanDevice, FAN_DIRECTION direct);
+
 #endif

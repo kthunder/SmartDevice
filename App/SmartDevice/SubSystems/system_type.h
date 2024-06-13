@@ -125,6 +125,37 @@ typedef struct DisplayDevice
     struct DisplayDevice *next;
 }DisplayDevice;
 
+typedef enum
+{
+    STOP                                = 0,
+    CLOCKWISE                           = 1,
+    ANTICLOCKWISE                       = 2,
+}FAN_DIRECTION;
+
+typedef struct FanDevice
+{
+    char *name;
+
+    int (*Init)(struct FanDevice *pFanDevice);
+    void (*Control)(struct FanDevice *pFanDevice, FAN_DIRECTION direct);
+
+    struct DisplayDevice *next;
+}FanDevice;
+
+
+typedef struct NetDevice
+{
+    char *name;
+    char ip[4];
+    char mac[6];
+
+    int (*Init)(struct NetDevice * pNetDevice);
+    int (*Connect)(struct NetDevice * pNetDevice, int SSID, char *password);
+    void (*DisConnect)(struct NetDevice * pNetDevice);
+
+    int (*Send)(struct NetDevice * pNetDevice, char *pDestIp, int iDestPort, unsigned char *data, int len);
+    int (*Receive)(struct NetDevice * pNetDevice, int iLocalPort, char *pSrcIp, unsigned char *data, int len, int timeout);
+}NetDevice;
 
 
 

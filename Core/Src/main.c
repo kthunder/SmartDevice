@@ -69,6 +69,9 @@ void SmartDeviceInit(void)
 
   AddDisplayDevice();
   InitDisplayDevices();
+
+  AddToFanDevice();
+  InitFanDevices();
 }
 
 
@@ -109,13 +112,11 @@ int main(void)
   printf("Smart Device Start.\r\n");
 
   SmartDeviceInit();
-
+  
   while (1)
   {
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
-
-    // HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }

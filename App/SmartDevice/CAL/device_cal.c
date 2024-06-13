@@ -21,13 +21,29 @@ int CAL_DisplayDeviceInit(DisplayDevice *pDisplayDevice)
     IIC_Init();
     Oled_Init();
 
-    return 0;
 #endif
+    return 0;
 }
 
 void CAL_DisplayDeviceFlash(DisplayDevice *pDisplayDevice)
 {
 #if defined(CONFIG_SUPPORT_HAL)
-Oled_CopyBuffer(pDisplayDevice->FrameBufferBase);
+    Oled_CopyBuffer(pDisplayDevice->FrameBufferBase);
+#endif
+}
+
+int CAL_FanDeviceInit(FanDevice *pFanDevice)
+{
+#if defined(CONFIG_SUPPORT_HAL)
+    Fan_Init(pFanDevice);
+#endif
+
+    return 0;
+}
+
+void CAL_FanDeviceControl(FanDevice *pFanDevice, FAN_DIRECTION direct)
+{
+#if defined(CONFIG_SUPPORT_HAL)
+    Fan_SetSpeed(pFanDevice, direct);
 #endif
 }
