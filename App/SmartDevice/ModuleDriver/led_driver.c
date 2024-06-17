@@ -23,7 +23,7 @@ int Led_Init(LedDevice *pLedDevice)
         break;
     
     default:
-        return NOT_FOUND;
+        return NOT_FOUND_ERROR;
         break;
     }
 
@@ -54,7 +54,7 @@ int LedControl(LedDevice *pLedDevice, int iStatus)
             break;
     
     default:
-        return NOT_FOUND;
+        return NOT_FOUND_ERROR;
     }
     
     return 0;

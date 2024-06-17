@@ -7,7 +7,7 @@ int PutEventIntoBuffer(InputEvent inputEvent)
     int index = (g_inputEventBuffer.pWrite + 1)%BUFFER_SIZE;
     if( index == g_inputEventBuffer.pRead)
     {
-        return BUFFER_FULL;
+        return BUFFER_FULL_ERROR;
     }
 
     g_inputEventBuffer.buffer[g_inputEventBuffer.pWrite] = inputEvent;
@@ -21,12 +21,12 @@ int GetEventFromBuffer(InputEvent *pInputEvent)
 {
     if(pInputEvent == NULL)
     {
-        return NULL_POINT;
+        return NULL_POINT_ERROR;
     }
 
     if(g_inputEventBuffer.pRead == g_inputEventBuffer.pWrite)
     {
-        return BUFFER_EMPTY;
+        return BUFFER_EMPTY_ERROR;
     }
 
     *pInputEvent = g_inputEventBuffer.buffer[g_inputEventBuffer.pRead];

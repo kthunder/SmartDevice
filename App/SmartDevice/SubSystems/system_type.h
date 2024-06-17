@@ -14,10 +14,12 @@
 #define BUFFER_SIZE                     10
 
 #define RETURN_SUCCESS                  0X00
-#define NULL_POINT                      0x01
-#define BUFFER_FULL                     0x02
-#define BUFFER_EMPTY                    0x03
-#define NOT_FOUND                       0x03
+#define NULL_POINT_ERROR                0x01
+#define BUFFER_FULL_ERROR               0x02
+#define BUFFER_EMPTY_ERROR              0x03
+#define NOT_FOUND_ERROR                 0x03
+#define TIMEOUT_ERROR                   0x04
+#define RETURN_ERROR                    0x05
 
 #define INA_Pin                         GPIO_PIN_6
 #define INA_GPIO_Port                   GPIOE
@@ -125,6 +127,18 @@ typedef struct DisplayDevice
     struct DisplayDevice *next;
 }DisplayDevice;
 
+#define ATInterfaceDevice               UartDevice
+#define PTATInterfaceDevice             PUartDevice
+
+typedef struct UartDevice
+{
+    char *name;
+    int (*Init)(struct UartDevice *pUartDevice);
+    int (*ClearRecvBuf)(struct UartDevice *pUartDevice);
+    int (*Write)(struct UartDevice *pUartDevice, char *data, int iLen);
+    int (*ReadByte)(struct UartDevice *pUartDevice, char *data);
+}UartDevice, *PUartDevice;
+
 typedef enum
 {
     STOP                                = 0,
@@ -142,6 +156,12 @@ typedef struct FanDevice
     struct DisplayDevice *next;
 }FanDevice;
 
+typedef enum
+{
+    INIT_STATUS                         = 0,
+    LEN_STATUS                          = 1,
+    DATA_STATUS                         = 2,
+}AT_STATUS;
 
 typedef struct NetDevice
 {
@@ -153,10 +173,10 @@ typedef struct NetDevice
     int (*Connect)(struct NetDevice * pNetDevice, int SSID, char *password);
     void (*DisConnect)(struct NetDevice * pNetDevice);
 
-    int (*Send)(struct NetDevice * pNetDevice, char *pDestIp, int iDestPort, unsigned char *data, int len);
-    int (*Receive)(struct NetDevice * pNetDevice, int iLocalPort, char *pSrcIp, unsigned char *data, int len, int timeout);
+    int (*Send)(struct NetDevice * pNetDevice, char *type, char *pDestIp, int iDestPort, unsigned char *data, int len);
+    int (*Receive)(struct NetDevice * pNetDevice, char *type, int iLocalPort, char *pSrcIp, unsigned char *data, int *pLen, int timeout);
+    struct NetDevice* next;
 }NetDevice;
-
 
 
 #endif

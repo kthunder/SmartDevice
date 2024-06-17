@@ -21,11 +21,12 @@ typedef struct RingBuffer
     uint32_t pr;
 }RingBuffer;
 
-extern void EnablePrintfIRQ();
 extern void DisablePrintfIRQ();
 
 extern int getDataFromBuffer(RingBuffer *g_RingBuffer, char *c);
 extern int putDataIntoBuffer(RingBuffer *g_RingBuffer, char c);
+
+extern PTATInterfaceDevice getATInterfaceDevice();
 
 extern RingBuffer dataBuffer;
 

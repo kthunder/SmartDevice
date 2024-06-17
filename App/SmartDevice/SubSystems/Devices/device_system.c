@@ -26,7 +26,7 @@ static LedDevice g_ledDevices[]={
 LedDevice* GetLedDevice(int which)
 {
     if((which<LED_WHITE)&&(which>LED_GREEN))
-        return (LedDevice*)NOT_FOUND;
+        return (LedDevice*)NOT_FOUND_ERROR;
     
     return &g_ledDevices[which];
 }
@@ -51,7 +51,7 @@ static int DisplayDeviceSetPixel(DisplayDevice *pOledDevice, int iX, int iY, int
 
     if(iX>pOledDevice->iXresolution || iY>pOledDevice->iYresolution)
     {
-        return NOT_FOUND;
+        return NOT_FOUND_ERROR;
     }
 
     page = iY / 8;

@@ -1,56 +1,84 @@
 #include "net_system.h"
 
-InputDevice* g_InputDeviceList = NULL;
+#define ESP_DEFAULT_TIMEOUT     10
 
-static void GpioKeyInit(void)
+NetDevice* g_NetDeviceList = NULL;
+
+static int Esp8266Init(NetDevice * pNetDevice)
 {
-    KAL_GpioKeyInit();
+    ATInterfaceInit();
+
+    ATCommandSend("AT+CWMODE=3", ESP_DEFAULT_TIMEOUT);
+    ATCommandSend("AT+CIPMUX=0", ESP_DEFAULT_TIMEOUT);
+
+    return 0;
 }
 
-static void StdIoInit(void)
+static int Esp8266Connect(NetDevice * pNetDevice, int SSID, char *password)
 {
-    KAL_StdIoInit();
+    char cmd[100];
+
+    sprintf(cmd, "AT+CWJAP=\"%s\", \"%s\"",SSID, password);
+
+    return ATCommandSend(cmd, ESP_DEFAULT_TIMEOUT);
 }
 
-static InputDevice g_KeyDevice=
+static void Esp8266DisConnect(NetDevice * pNetDevice)
 {
-    .name = "key",
-    .GetInputEvent = NULL,
-    .DeviceInit = GpioKeyInit,
-    .DeviceDeInit = NULL
+    return ATCommandClose("AT+CIPCLOSE", ESP_DEFAULT_TIMEOUT);
+}
+
+static int Esp8266Send(NetDevice * pNetDevice, char *type, char *pDestIp, int iDestPort, unsigned char *data, int len)
+{
+    return 0;
+}
+
+static int Esp8266Recevice(NetDevice * pNetDevice, char *type, int iLocalPort, char *pSrcIp, unsigned char *data, int *pLen, int timeout)
+{
+    return ATDataReceive(pNetDevice, data, pLen, timeout);
+}
+
+
+static NetDevice g_Esp8266NetDevice=
+{
+    .name = "Esp8266",
+    .ip = {0,0,0,0},
+    .mac = {0,0,0,0,0,0},
+    .Init = Esp8266Init,
+    .Connect = Esp8266Connect,
+    .Send = Esp8266Send,
+    .Receive = Esp8266Recevice
 };
 
-static void InputDeviceRegister(InputDevice* inputDevice)
+static void NetDeviceRegister(NetDevice* netDevice)
 {
-    if (g_InputDeviceList == NULL)
+    if (g_NetDeviceList == NULL)
     {
-        g_InputDeviceList = inputDevice;
+        g_NetDeviceList = netDevice;
     }else
     {
-        InputDevice* tmp = g_InputDeviceList;
+        NetDevice* tmp = g_NetDeviceList;
         while (tmp->next!=NULL)
         {
             tmp = tmp->next;
         }
-        tmp->next = inputDevice;
+        tmp->next = netDevice;
     }
 }
 
-void AddKeyToInputDevice()
+void Add8266oNetDevice()
 {
-    InputDeviceRegister(&g_KeyDevice);
+    NetDeviceRegister(&g_Esp8266NetDevice);
 }
 
-void InitInputDevices()
+void InitNetDevices()
 {
-    InputDevice* tmp = g_InputDeviceList;
+    NetDevice* tmp = g_NetDeviceList;
 
     while (tmp !=NULL)
     {
-        tmp->DeviceInit();
+        tmp->Init(tmp);
         tmp = tmp ->next;
     }
-
-    printf("init devices.\r\n");
 }
 

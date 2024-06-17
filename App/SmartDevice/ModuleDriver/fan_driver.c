@@ -24,19 +24,19 @@ int Fan_Init(FanDevice *pFanDevice)
 int Fan_SetSpeed(FanDevice *pFanDevice, FAN_DIRECTION direct)
 {
     if(pFanDevice==NULL)
-        return NULL_POINT;
+        return NULL_POINT_ERROR;
 
     if(direct == STOP)
     {
         HAL_GPIO_WritePin(INA_GPIO_Port, INA_Pin, GPIO_PIN_RESET);
         HAL_GPIO_WritePin(INB_GPIO_Port, INB_Pin, GPIO_PIN_RESET);
     }
-    else if (direct = CLOCKWISE)
+    else if (direct == CLOCKWISE)
     {
         HAL_GPIO_WritePin(INA_GPIO_Port, INA_Pin, GPIO_PIN_RESET);
         HAL_GPIO_WritePin(INB_GPIO_Port, INB_Pin, GPIO_PIN_SET);
     }
-    else if (direct = ANTICLOCKWISE)
+    else if (direct == ANTICLOCKWISE)
     {
         HAL_GPIO_WritePin(INA_GPIO_Port, INA_Pin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(INB_GPIO_Port, INB_Pin, GPIO_PIN_RESET);

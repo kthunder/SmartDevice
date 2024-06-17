@@ -270,3 +270,9 @@ void Uart_isr(UART_HandleTypeDef *huart)
 	//return;
     }
 }
+
+
+PTATInterfaceDevice getATInterfaceDevice()
+{
+	
+}

@@ -90,6 +90,7 @@ void esp_console_start (void)
 	}
 }
 
+
 /* USER CODE END 0 */
 
 /**
@@ -127,6 +128,14 @@ int main(void)
 
   SmartDeviceInit();
   
+  // char cmd[100];
+
+  // char *SSID="ziroom202";
+  // char *password="ziroomer002";
+
+  // sprintf(cmd, "AT+CWJAP=\"%s\", \"%s\"",SSID, password);
+
+  // printf("%s\r\n", cmd);
 
   while (1)
   {
